@@ -16,13 +16,13 @@ export default defineConfig({
       "/guide/": [
         {
           text: "Hands-on Guide",
-          items: [{ text: "はじめに", link: "/guide/" }],
+          link: "/guide/",
         },
         {
           text: "10. Podman 編",
+          link: "/guide/10_podman/",
           collapsed: true,
           items: [
-            { text: "章トップ", link: "/guide/10_podman/" },
             {
               text: "1. コンテナイメージの取得と削除",
               link: "/guide/10_podman/01_image",
@@ -39,9 +39,9 @@ export default defineConfig({
         },
         {
           text: "20. Kubernetes 編",
+          link: "/guide/20_kubernetes/",
           collapsed: true,
           items: [
-            { text: "章トップ", link: "/guide/20_kubernetes/" },
             {
               text: "4. k3s を使って簡易的に起動する",
               link: "/guide/20_kubernetes/04_k3s",
@@ -55,14 +55,24 @@ export default defineConfig({
         {
           text: "30. アプリ編",
           collapsed: true,
+          link: "/guide/30_app/",
           items: [
-            { text: "章トップ", link: "/guide/30_app/" },
             {
               text: "6. 最後に簡単なアプリを起動する",
               link: "/guide/30_app/06_simple_app",
             },
-            { text: "7. まとめ", link: "/guide/30_app/07_summary" },
-            { text: "8. 次のステップ", link: "/guide/30_app/08_next_steps" },
+          ],
+        },
+        {
+          text: "90. まとめ",
+          collapsed: true,
+          link: "/guide/90_conclusion/",
+          items: [
+            { text: "7. まとめ", link: "/guide/90_conclusion/07_summary" },
+            {
+              text: "8. 次のステップ",
+              link: "/guide/90_conclusion/08_next_steps",
+            },
           ],
         },
       ],
