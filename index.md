@@ -6,6 +6,10 @@ hero:
   name: "Container-Handson"
   text: "podman, kubernetes..."
   tagline: Podman と k3s の学習と実践
+  image:
+    src: /logo.svg
+    alt: Container-Handson Logo
+
   actions:
     - theme: brand
       text: Hands-on を始める
