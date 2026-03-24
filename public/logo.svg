@@ -1,0 +1,23 @@
+<svg width="256" height="256" viewBox="0 0 256 256" fill="none" xmlns="http://www.w3.org/2000/svg" role="img" aria-labelledby="title desc">
+  <title id="title">Container Handson Logo</title>
+  <desc id="desc">A cube container and Kubernetes wheel motif.</desc>
+  <defs>
+    <linearGradient id="bg" x1="32" y1="32" x2="224" y2="224" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#2E8BFF"/>
+      <stop offset="1" stop-color="#38C6A8"/>
+    </linearGradient>
+  </defs>
+
+  <rect x="16" y="16" width="224" height="224" rx="48" fill="url(#bg)"/>
+
+  <path d="M128 66L74 96V156L128 186L182 156V96L128 66Z" fill="white" fill-opacity="0.95"/>
+  <path d="M128 66V186M74 96L128 126L182 96M74 156L128 126L182 156" stroke="#2E8BFF" stroke-width="8" stroke-linecap="round" stroke-linejoin="round"/>
+
+  <circle cx="128" cy="126" r="58" stroke="white" stroke-opacity="0.85" stroke-width="6"/>
+  <circle cx="128" cy="68" r="8" fill="white"/>
+  <circle cx="178" cy="97" r="8" fill="white"/>
+  <circle cx="178" cy="155" r="8" fill="white"/>
+  <circle cx="128" cy="184" r="8" fill="white"/>
+  <circle cx="78" cy="155" r="8" fill="white"/>
+  <circle cx="78" cy="97" r="8" fill="white"/>
+</svg>
