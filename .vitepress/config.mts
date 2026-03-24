@@ -16,11 +16,50 @@ export default defineConfig({
       "/guide/": [
         {
           text: "Hands-on Guide",
+          items: [{ text: "はじめに", link: "/guide/" }],
+        },
+        {
+          text: "10. Podman 編",
           items: [
-            { text: "はじめに", link: "/guide/" },
-            { text: "10. Podman 編", link: "/guide/10_podman/" },
-            { text: "20. Kubernetes 編", link: "/guide/20_kubernetes/" },
-            { text: "30. アプリ編", link: "/guide/30_app/" },
+            { text: "章トップ", link: "/guide/10_podman/" },
+            {
+              text: "1. コンテナイメージの取得と削除",
+              link: "/guide/10_podman/01_image",
+            },
+            {
+              text: "2. コンテナの起動・停止・削除",
+              link: "/guide/10_podman/02_container",
+            },
+            {
+              text: "3. コンテナイメージをビルドして修正する",
+              link: "/guide/10_podman/03_build",
+            },
+          ],
+        },
+        {
+          text: "20. Kubernetes 編",
+          items: [
+            { text: "章トップ", link: "/guide/20_kubernetes/" },
+            {
+              text: "4. k3s を使って簡易的に起動する",
+              link: "/guide/20_kubernetes/04_k3s",
+            },
+            {
+              text: "5. Manifest でデプロイする",
+              link: "/guide/20_kubernetes/05_manifest",
+            },
+          ],
+        },
+        {
+          text: "30. アプリ編",
+          items: [
+            { text: "章トップ", link: "/guide/30_app/" },
+            {
+              text: "6. 最後に簡単なアプリを起動する",
+              link: "/guide/30_app/06_simple_app",
+            },
+            { text: "7. まとめ", link: "/guide/30_app/07_summary" },
+            { text: "8. 次のステップ", link: "/guide/30_app/08_next_steps" },
           ],
         },
       ],
