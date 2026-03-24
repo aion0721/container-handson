@@ -1,8 +1,8 @@
-# 2. コンテナの起動・停止・削除
+# 12. コンテナの起動・停止・削除
 
 次は、取得したイメージを使ってコンテナを動かします。
 
-## 2-1. コンテナを起動する
+## 12-1. コンテナを起動する
 
 再度イメージを取得します。
 
@@ -28,7 +28,7 @@ podman run -d --name my-httpd -p 8080:80 docker.io/library/httpd:2.4
 - `--name my-httpd`: コンテナ名を指定
 - `-p 8080:80`: ホストの 8080 番をコンテナの 80 番に転送
 
-## 2-2. 起動中のコンテナを確認する
+## 12-2. 起動中のコンテナを確認する
 
 ```bash
 podman ps
@@ -55,7 +55,7 @@ curl http://localhost:8080
 
 Apache HTTP Server の初期ページが返ってくれば成功です。
 
-## 2-3. コンテナを停止する
+## 12-3. コンテナを停止する
 
 ```bash
 podman stop my-httpd
@@ -73,7 +73,7 @@ podman ps
 podman ps -a
 ```
 
-## 2-4. コンテナを再起動する
+## 12-4. コンテナを再起動する
 
 ```bash
 podman start my-httpd
@@ -85,7 +85,7 @@ podman start my-httpd
 curl http://localhost:8080
 ```
 
-## 2-5. コンテナを削除する
+## 12-5. コンテナを削除する
 
 まず停止します。
 
