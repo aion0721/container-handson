@@ -7,7 +7,12 @@ export default defineConfig({
   base: "/container-handson",
   head: [["link", { rel: "icon", type: "image/svg+xml", href: "/favicon.svg" }]],
   themeConfig: {
-    logo: "/logo.svg",
+    logo: {
+      src: "/logo.svg",
+      alt: "Container-Handson",
+      width: 28,
+      height: 28,
+    },
     // https://vitepress.dev/reference/default-theme-config
     nav: [
       { text: "Home", link: "/" },
