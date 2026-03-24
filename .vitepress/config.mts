@@ -20,6 +20,7 @@ export default defineConfig({
         },
         {
           text: "10. Podman 編",
+          collapsed: true,
           items: [
             { text: "章トップ", link: "/guide/10_podman/" },
             {
@@ -38,6 +39,7 @@ export default defineConfig({
         },
         {
           text: "20. Kubernetes 編",
+          collapsed: true,
           items: [
             { text: "章トップ", link: "/guide/20_kubernetes/" },
             {
@@ -52,6 +54,7 @@ export default defineConfig({
         },
         {
           text: "30. アプリ編",
+          collapsed: true,
           items: [
             { text: "章トップ", link: "/guide/30_app/" },
             {

@@ -48,6 +48,15 @@ COPY index.html /usr/local/apache2/htdocs/index.html
 podman build -t simple-app:v1 .
 ```
 
+実行結果例:
+
+```bash
+STEP 1/2: FROM docker.io/library/httpd:2.4
+STEP 2/2: COPY index.html /usr/local/apache2/htdocs/index.html
+COMMIT simple-app:v1
+Successfully tagged localhost/simple-app:v1
+```
+
 ## 6-4. レジストリに push する
 
 k3s から参照できるレジストリに push してください。
@@ -109,6 +118,13 @@ spec:
 kubectl apply -f simple-app.yaml
 ```
 
+実行結果例:
+
+```bash
+deployment.apps/simple-app created
+service/simple-app created
+```
+
 状態確認:
 
 ```bash
@@ -116,10 +132,26 @@ kubectl get pods
 kubectl get svc
 ```
 
+実行結果例:
+
+```bash
+NAME                         READY   STATUS    RESTARTS   AGE
+simple-app-65fd6f8fc-4d9tw   1/1     Running   0          30s
+
+NAME         TYPE       CLUSTER-IP      EXTERNAL-IP   PORT(S)        AGE
+simple-app   NodePort   10.43.245.201   <none>        80:30081/TCP   29s
+```
+
 アクセス確認:
 
 ```bash
 curl http://localhost:30081
+```
+
+実行結果例:
+
+```html
+<h1>社内ハンズオン アプリ</h1>
 ```
 
 ページが表示されれば成功です。
