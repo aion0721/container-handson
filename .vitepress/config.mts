@@ -24,16 +24,16 @@ export default defineConfig({
           collapsed: true,
           items: [
             {
-              text: "1. コンテナイメージの取得と削除",
-              link: "/guide/10_podman/01_image",
+              text: "11. コンテナイメージの取得と削除",
+              link: "/guide/10_podman/11_image",
             },
             {
-              text: "2. コンテナの起動・停止・削除",
-              link: "/guide/10_podman/02_container",
+              text: "12. コンテナの起動・停止・削除",
+              link: "/guide/10_podman/12_container",
             },
             {
-              text: "3. コンテナイメージをビルドして修正する",
-              link: "/guide/10_podman/03_build",
+              text: "13. コンテナイメージをビルドして修正する",
+              link: "/guide/10_podman/13_build",
             },
           ],
         },
@@ -43,12 +43,12 @@ export default defineConfig({
           collapsed: true,
           items: [
             {
-              text: "4. k3s を使って簡易的に起動する",
-              link: "/guide/20_kubernetes/04_k3s",
+              text: "21. k3s を使って簡易的に起動する",
+              link: "/guide/20_kubernetes/21_k3s",
             },
             {
-              text: "5. Manifest でデプロイする",
-              link: "/guide/20_kubernetes/05_manifest",
+              text: "22. Manifest でデプロイする",
+              link: "/guide/20_kubernetes/22_manifest",
             },
           ],
         },
@@ -58,8 +58,8 @@ export default defineConfig({
           link: "/guide/30_app/",
           items: [
             {
-              text: "6. 最後に簡単なアプリを起動する",
-              link: "/guide/30_app/06_simple_app",
+              text: "31. 最後に簡単なアプリを起動する",
+              link: "/guide/30_app/31_simple_app",
             },
           ],
         },
@@ -68,10 +68,10 @@ export default defineConfig({
           collapsed: true,
           link: "/guide/90_conclusion/",
           items: [
-            { text: "7. まとめ", link: "/guide/90_conclusion/07_summary" },
+            { text: "91. まとめ", link: "/guide/90_conclusion/91_summary" },
             {
-              text: "8. 次のステップ",
-              link: "/guide/90_conclusion/08_next_steps",
+              text: "92. 次のステップ",
+              link: "/guide/90_conclusion/92_next_steps",
             },
           ],
         },
