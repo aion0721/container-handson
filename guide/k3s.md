@@ -1,5 +1,8 @@
 # k3sとは
 
+![ページのイメージ図](/illustrations/guide.svg)
+
+
 k3s は、軽量化された Kubernetes ディストリビューションです。
 
 ## k3s の特徴

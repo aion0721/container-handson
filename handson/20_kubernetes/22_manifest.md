@@ -1,5 +1,8 @@
 # 22. Manifest でデプロイする
 
+![ページのイメージ図](/illustrations/kubernetes.svg)
+
+
 実際の運用では、コマンド一発よりも YAML で管理することが多いため、Manifest を使ってデプロイします。
 
 ## 22-1. deployment.yaml を作成する

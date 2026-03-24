@@ -1,0 +1,14 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 960 360">
+  <rect width="960" height="360" fill="#f8fafc"/>
+  <text x="40" y="66" font-size="34" font-family="Arial" font-weight="700" fill="#0f172a">k3s デプロイの全体像</text>
+  <rect x="70" y="110" width="220" height="190" rx="16" fill="#e0e7ff" stroke="#4f46e5"/>
+  <text x="110" y="170" font-size="26" font-family="Arial" fill="#312e81">Manifest</text>
+  <text x="108" y="204" font-size="20" font-family="Arial" fill="#3730a3">Deployment / Service</text>
+  <rect x="370" y="110" width="220" height="190" rx="16" fill="#dbeafe" stroke="#2563eb"/>
+  <text x="420" y="170" font-size="26" font-family="Arial" fill="#1e3a8a">k3s</text>
+  <text x="395" y="204" font-size="20" font-family="Arial" fill="#1e40af">Scheduler / Controller</text>
+  <rect x="670" y="110" width="220" height="190" rx="16" fill="#dcfce7" stroke="#16a34a"/>
+  <text x="710" y="170" font-size="26" font-family="Arial" fill="#14532d">Pod</text>
+  <text x="700" y="204" font-size="20" font-family="Arial" fill="#166534">App Container</text>
+  <path d="M295 200h65M595 200h65" stroke="#334155" stroke-width="7" stroke-linecap="round"/>
+</svg>

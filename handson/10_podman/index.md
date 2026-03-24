@@ -1,5 +1,8 @@
 # 10. Podman 編
 
+![ページのイメージ図](/illustrations/podman.svg)
+
+
 この章では、`podman` を使った基本操作を実施します。
 
 ## セクション

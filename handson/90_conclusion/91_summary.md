@@ -1,5 +1,8 @@
 # 91. まとめ
 
+![ページのイメージ図](/illustrations/conclusion.svg)
+
+
 このハンズオンでは、以下の内容を体験しました。
 
 - `podman pull` でコンテナイメージを取得する

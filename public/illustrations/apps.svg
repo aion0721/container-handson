@@ -1,0 +1,13 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 960 360">
+  <rect width="960" height="360" fill="#f8fafc"/>
+  <text x="40" y="66" font-size="34" font-family="Arial" font-weight="700" fill="#0f172a">アプリ開発とコンテナ活用</text>
+  <rect x="70" y="110" width="180" height="190" rx="16" fill="#fae8ff" stroke="#c026d3"/>
+  <text x="117" y="195" font-size="24" font-family="Arial" fill="#86198f">Code</text>
+  <rect x="280" y="110" width="180" height="190" rx="16" fill="#ffedd5" stroke="#ea580c"/>
+  <text x="324" y="195" font-size="24" font-family="Arial" fill="#9a3412">Build</text>
+  <rect x="490" y="110" width="180" height="190" rx="16" fill="#dbeafe" stroke="#2563eb"/>
+  <text x="538" y="195" font-size="24" font-family="Arial" fill="#1e3a8a">Push</text>
+  <rect x="700" y="110" width="180" height="190" rx="16" fill="#dcfce7" stroke="#16a34a"/>
+  <text x="746" y="195" font-size="24" font-family="Arial" fill="#14532d">Deploy</text>
+  <path d="M250 200h25M460 200h25M670 200h25" stroke="#334155" stroke-width="6" stroke-linecap="round"/>
+</svg>

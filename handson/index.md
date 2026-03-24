@@ -1,5 +1,8 @@
 # Podman と k3s ではじめるコンテナハンズオン
 
+![ページのイメージ図](/illustrations/overview.svg)
+
+
 ## はじめに
 
 このハンズオンでは、`podman` を使ってコンテナの基本操作を体験し、その後 `k3s` を使って Kubernetes 上でアプリケーションを動かします。

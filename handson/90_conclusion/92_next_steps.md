@@ -1,5 +1,8 @@
 # 92. 次のステップ
 
+![ページのイメージ図](/illustrations/conclusion.svg)
+
+
 余裕があれば、次の内容にもチャレンジしてみてください。
 
 - `podman logs` でログを確認する

@@ -1,0 +1,18 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 960 420" role="img" aria-labelledby="t d">
+  <title id="t">学習ロードマップ</title>
+  <desc id="d">Podmanからk3sまで段階的に学ぶイメージ図</desc>
+  <defs><linearGradient id="g" x1="0" x2="1"><stop offset="0" stop-color="#7c3aed"/><stop offset="1" stop-color="#2563eb"/></linearGradient></defs>
+  <rect width="960" height="420" fill="#f8fafc"/>
+  <text x="48" y="74" font-size="34" font-family="Arial" fill="#0f172a" font-weight="700">Podman → Kubernetes → App 開発</text>
+  <rect x="50" y="110" width="250" height="220" rx="16" fill="#ede9fe" stroke="#7c3aed"/>
+  <text x="85" y="155" font-size="28" font-family="Arial" fill="#5b21b6">① Podman</text>
+  <text x="85" y="195" font-size="20" font-family="Arial" fill="#4c1d95">イメージ/コンテナ操作</text>
+  <rect x="355" y="110" width="250" height="220" rx="16" fill="#dbeafe" stroke="#2563eb"/>
+  <text x="392" y="155" font-size="28" font-family="Arial" fill="#1e3a8a">② k3s</text>
+  <text x="392" y="195" font-size="20" font-family="Arial" fill="#1e40af">デプロイと公開</text>
+  <rect x="660" y="110" width="250" height="220" rx="16" fill="#dcfce7" stroke="#16a34a"/>
+  <text x="695" y="155" font-size="28" font-family="Arial" fill="#14532d">③ Apps</text>
+  <text x="695" y="195" font-size="20" font-family="Arial" fill="#166534">実践開発フロー</text>
+  <path d="M305 220h40" stroke="url(#g)" stroke-width="8" stroke-linecap="round"/>
+  <path d="M610 220h40" stroke="url(#g)" stroke-width="8" stroke-linecap="round"/>
+</svg>

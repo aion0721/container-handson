@@ -1,5 +1,8 @@
 # 20. Kubernetes 編
 
+![ページのイメージ図](/illustrations/kubernetes.svg)
+
+
 この章では Kubernetes 環境である `k3s` を使って、アプリをデプロイします。
 
 ## セクション

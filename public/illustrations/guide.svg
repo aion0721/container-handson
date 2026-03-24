@@ -1,0 +1,9 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 960 320">
+  <rect width="960" height="320" fill="#f8fafc"/>
+  <text x="40" y="70" font-size="34" font-family="Arial" font-weight="700" fill="#0f172a">学習前に押さえる概念マップ</text>
+  <rect x="120" y="120" width="280" height="130" rx="16" fill="#dbeafe" stroke="#2563eb"/>
+  <text x="180" y="195" font-size="30" font-family="Arial" fill="#1e3a8a">Container</text>
+  <rect x="560" y="120" width="280" height="130" rx="16" fill="#dcfce7" stroke="#16a34a"/>
+  <text x="665" y="195" font-size="30" font-family="Arial" fill="#14532d">k3s</text>
+  <path d="M410 185h140" stroke="#334155" stroke-width="8" stroke-linecap="round"/>
+</svg>
