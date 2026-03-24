@@ -1,8 +1,8 @@
-# 1. コンテナイメージの取得と削除
+# 11. コンテナイメージの取得と削除
 
 まずは、コンテナイメージを取得してみます。
 
-## 1-1. イメージを取得する
+## 11-1. イメージを取得する
 
 以下のコマンドで `httpd` イメージを取得します。
 
@@ -23,7 +23,7 @@ REPOSITORY                 TAG      IMAGE ID      CREATED      SIZE
 docker.io/library/httpd    2.4      xxxxxxxxxxxx  x days ago   xxx MB
 ```
 
-## 1-2. イメージの詳細を確認する
+## 11-2. イメージの詳細を確認する
 
 ```bash
 podman image inspect docker.io/library/httpd:2.4
@@ -31,7 +31,7 @@ podman image inspect docker.io/library/httpd:2.4
 
 イメージのメタデータや設定内容を確認できます。
 
-## 1-3. イメージを削除する
+## 11-3. イメージを削除する
 
 不要になったイメージは削除できます。
 

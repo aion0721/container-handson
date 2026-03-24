@@ -1,15 +1,15 @@
-# 3. コンテナイメージをビルドして修正する
+# 13. コンテナイメージをビルドして修正する
 
 ここからは、`httpd` をベースに独自の Web ページを表示するイメージを作ります。
 
-## 3-1. 作業ディレクトリを作成する
+## 13-1. 作業ディレクトリを作成する
 
 ```bash
 mkdir podman-httpd-handson
 cd podman-httpd-handson
 ```
 
-## 3-2. HTML ファイルを作成する
+## 13-2. HTML ファイルを作成する
 
 `index.html` を作成します。
 
@@ -27,7 +27,7 @@ cd podman-httpd-handson
 </html>
 ```
 
-## 3-3. Containerfile を作成する
+## 13-3. Containerfile を作成する
 
 `Containerfile` を作成します。
 
@@ -37,7 +37,7 @@ FROM docker.io/library/httpd:2.4
 COPY index.html /usr/local/apache2/htdocs/index.html
 ```
 
-## 3-4. イメージをビルドする
+## 13-4. イメージをビルドする
 
 ```bash
 podman build -t my-httpd:v1 .
@@ -49,7 +49,7 @@ podman build -t my-httpd:v1 .
 podman images
 ```
 
-## 3-5. ビルドしたイメージを起動する
+## 13-5. ビルドしたイメージを起動する
 
 ```bash
 podman run -d --name my-httpd-v1 -p 8080:80 my-httpd:v1
@@ -63,7 +63,7 @@ curl http://localhost:8080
 
 `Hello Podman!` が表示されれば成功です。
 
-## 3-6. ページを修正する
+## 13-6. ページを修正する
 
 `index.html` を編集してみます。
 

@@ -1,8 +1,8 @@
-# 5. Manifest でデプロイする
+# 22. Manifest でデプロイする
 
 実際の運用では、コマンド一発よりも YAML で管理することが多いため、Manifest を使ってデプロイします。
 
-## 5-1. deployment.yaml を作成する
+## 22-1. deployment.yaml を作成する
 
 ```yaml
 apiVersion: apps/v1
@@ -40,7 +40,7 @@ spec:
   type: NodePort
 ```
 
-## 5-2. デプロイする
+## 22-2. デプロイする
 
 ```bash
 kubectl apply -f deployment.yaml
@@ -81,7 +81,7 @@ kubernetes   ClusterIP  10.43.0.1       <none>        443/TCP        1d
 curl http://localhost:30080
 ```
 
-## 5-3. 削除する
+## 22-3. 削除する
 
 ```bash
 kubectl delete -f deployment.yaml

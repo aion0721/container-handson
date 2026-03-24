@@ -1,16 +1,16 @@
-# 6. 最後に簡単なアプリを起動する
+# 31. 最後に簡単なアプリを起動する
 
 最後は、少しだけ「アプリっぽい」ものを起動してみます。
 ここでは、シンプルな HTML を返すだけのアプリをコンテナ化して、k3s 上で動かします。
 
-## 6-1. アプリ用ディレクトリを作る
+## 31-1. アプリ用ディレクトリを作る
 
 ```bash
 mkdir simple-app
 cd simple-app
 ```
 
-## 6-2. アプリのファイルを作成する
+## 31-2. アプリのファイルを作成する
 
 `index.html`
 
@@ -42,7 +42,7 @@ FROM docker.io/library/httpd:2.4
 COPY index.html /usr/local/apache2/htdocs/index.html
 ```
 
-## 6-3. イメージをビルドする
+## 31-3. イメージをビルドする
 
 ```bash
 podman build -t simple-app:v1 .
@@ -57,7 +57,7 @@ COMMIT simple-app:v1
 Successfully tagged localhost/simple-app:v1
 ```
 
-## 6-4. レジストリに push する
+## 31-4. レジストリに push する
 
 k3s から参照できるレジストリに push してください。
 ここでは例として `registry.example.local` を利用します。
@@ -72,7 +72,7 @@ podman push registry.example.local/simple-app:v1
 この部分は自組織の環境に合わせて読み替えてください。
 :::
 
-## 6-5. Kubernetes Manifest を作成する
+## 31-5. Kubernetes Manifest を作成する
 
 `simple-app.yaml`
 
@@ -112,7 +112,7 @@ spec:
   type: NodePort
 ```
 
-## 6-6. デプロイする
+## 31-6. デプロイする
 
 ```bash
 kubectl apply -f simple-app.yaml
