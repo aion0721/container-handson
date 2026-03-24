@@ -4,18 +4,21 @@ layout: home
 
 hero:
   name: "Container-Handson"
-  text: "podman, kuvernetes..."
-  tagline: My great project tagline
+  text: "podman, kubernetes..."
+  tagline: Podman と k3s の学習と実践
   actions:
     - theme: brand
-      text: guide page
-      link: /guide
+      text: Hands-on を始める
+      link: /handson/
+    - theme: alt
+      text: Guide を読む
+      link: /guide/
 
 features:
-  - title: Feature A
-    details: Lorem ipsum dolor sit amet, consectetur adipiscing elit
-  - title: Feature B
-    details: Lorem ipsum dolor sit amet, consectetur adipiscing elit
-  - title: Feature C
-    details: Lorem ipsum dolor sit amet, consectetur adipiscing elit
+  - title: Hands-on
+    details: Podman から k3s まで、手を動かしながら学べる実践コンテンツ。
+  - title: Guide
+    details: コンテナや k3s の全体像を短く理解するための解説ページ。
+  - title: Next Step
+    details: 学習後に次へ進むための参考トピックへつながる構成。
 ---
