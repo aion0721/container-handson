@@ -58,8 +58,16 @@ export default defineConfig({
           link: "/guide/30_app/",
           items: [
             {
-              text: "31. 最後に簡単なアプリを起動する",
+              text: "31. 簡単なアプリ",
               link: "/guide/30_app/31_simple_app",
+            },
+            {
+              text: "32. Java のアプリ",
+              link: "/guide/30_app/32_java_app",
+            },
+            {
+              text: "33. 開発環境として利用する",
+              link: "/guide/30_app/33_dev_env",
             },
           ],
         },
