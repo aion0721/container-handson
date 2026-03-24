@@ -7,7 +7,11 @@ export default defineConfig({
   base: "/container-handson",
   themeConfig: {
     // https://vitepress.dev/reference/default-theme-config
-    nav: [{ text: "Guide", link: "/guide/" }],
+    nav: [
+      { text: "Home", link: "/" },
+      { text: "Guide", link: "/guide/" },
+      { text: "Examples", link: "/markdown-examples" },
+    ],
 
     sidebar: {
       "/guide/": [
@@ -18,6 +22,15 @@ export default defineConfig({
             { text: "10. Podman 編", link: "/guide/10_podman/" },
             { text: "20. Kubernetes 編", link: "/guide/20_kubernetes/" },
             { text: "30. アプリ編", link: "/guide/30_app/" },
+          ],
+        },
+      ],
+      "/": [
+        {
+          text: "Examples",
+          items: [
+            { text: "Markdown Examples", link: "/markdown-examples" },
+            { text: "Runtime API Examples", link: "/api-examples" },
           ],
         },
       ],
