@@ -35,9 +35,7 @@ podman load -i my-httpd-v1.tar
 ### Kubernetes
 
 ```bash
-kubectl get pods
-kubectl get svc
-kubectl get deployments
+kubectl get all
 kubectl get ingress
 kubectl delete pod <pod_name>
 kubectl scale deployment <deployment_name> --replicas=3

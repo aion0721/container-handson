@@ -164,8 +164,7 @@ spec:
 
 ```bash
 kubectl apply -f java-sample.yaml
-kubectl get pods
-kubectl get svc
+kubectl get all
 curl http://localhost:30082
 ```
 

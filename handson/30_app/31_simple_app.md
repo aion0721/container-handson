@@ -226,18 +226,24 @@ service/simple-app created
 状態確認:
 
 ```bash
-kubectl get pods
-kubectl get svc
+kubectl get all
 ```
 
 実行結果例:
 
 ```bash
-NAME                         READY   STATUS    RESTARTS   AGE
-simple-app-65fd6f8fc-4d9tw   1/1     Running   0          30s
+NAME                              READY   STATUS    RESTARTS   AGE
+pod/simple-app-65fd6f8fc-4d9tw   1/1     Running   0          30s
 
-NAME         TYPE       CLUSTER-IP      EXTERNAL-IP   PORT(S)        AGE
-simple-app   NodePort   10.43.245.201   <none>        80:30081/TCP   29s
+NAME                 TYPE        CLUSTER-IP      EXTERNAL-IP   PORT(S)        AGE
+service/simple-app   NodePort    10.43.245.201   <none>        80:30081/TCP   29s
+service/kubernetes   ClusterIP   10.43.0.1       <none>        443/TCP        1d
+
+NAME                         READY   UP-TO-DATE   AVAILABLE   AGE
+deployment.apps/simple-app   1/1     1            1           30s
+
+NAME                                    DESIRED   CURRENT   READY   AGE
+replicaset.apps/simple-app-65fd6f8fc   1         1         1       30s
 ```
 
 アクセス確認:

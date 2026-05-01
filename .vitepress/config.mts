@@ -119,6 +119,10 @@ export default defineConfig({
           text: "k3s とは",
           link: "/guide/k3s",
         },
+        {
+          text: "Vim 操作",
+          link: "/guide/vim",
+        },
       ],
     },
 

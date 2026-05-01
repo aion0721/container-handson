@@ -128,23 +128,25 @@ service/cluster-demo created
 状態を確認します。
 
 ```bash
-kubectl get deployments
-kubectl get pods -l app=cluster-demo
-kubectl get svc cluster-demo
+kubectl get all
 ```
 
 実行結果例:
 
 ```bash
-NAME           READY   UP-TO-DATE   AVAILABLE   AGE
-cluster-demo   2/2     2            2           20s
+NAME                                READY   STATUS    RESTARTS   AGE
+pod/cluster-demo-7d7f85f8f9-2m8kt   1/1     Running   0          19s
+pod/cluster-demo-7d7f85f8f9-qz6fp   1/1     Running   0          19s
 
-NAME                            READY   STATUS    RESTARTS   AGE
-cluster-demo-7d7f85f8f9-2m8kt   1/1     Running   0          19s
-cluster-demo-7d7f85f8f9-qz6fp   1/1     Running   0          19s
+NAME                   TYPE        CLUSTER-IP      EXTERNAL-IP   PORT(S)        AGE
+service/cluster-demo   NodePort    10.43.222.100   <none>        80:30084/TCP   20s
+service/kubernetes     ClusterIP   10.43.0.1       <none>        443/TCP        1d
 
-NAME           TYPE       CLUSTER-IP      EXTERNAL-IP   PORT(S)        AGE
-cluster-demo   NodePort   10.43.222.100   <none>        80:30084/TCP   20s
+NAME                           READY   UP-TO-DATE   AVAILABLE   AGE
+deployment.apps/cluster-demo   2/2     2            2           20s
+
+NAME                                      DESIRED   CURRENT   READY   AGE
+replicaset.apps/cluster-demo-7d7f85f8f9   2         2         2       20s
 ```
 
 アクセス確認:
@@ -166,21 +168,27 @@ kubectl scale deployment cluster-demo --replicas=4
 確認します。
 
 ```bash
-kubectl get deployment cluster-demo
-kubectl get pods -l app=cluster-demo
+kubectl get all
 ```
 
 実行結果例:
 
 ```bash
-NAME           READY   UP-TO-DATE   AVAILABLE   AGE
-cluster-demo   4/4     4            4           2m
+NAME                                READY   STATUS    RESTARTS   AGE
+pod/cluster-demo-7d7f85f8f9-2m8kt   1/1     Running   0          2m
+pod/cluster-demo-7d7f85f8f9-qz6fp   1/1     Running   0          2m
+pod/cluster-demo-7d7f85f8f9-t6x7b   1/1     Running   0          15s
+pod/cluster-demo-7d7f85f8f9-z9k4p   1/1     Running   0          15s
 
-NAME                            READY   STATUS    RESTARTS   AGE
-cluster-demo-7d7f85f8f9-2m8kt   1/1     Running   0          2m
-cluster-demo-7d7f85f8f9-qz6fp   1/1     Running   0          2m
-cluster-demo-7d7f85f8f9-t6x7b   1/1     Running   0          15s
-cluster-demo-7d7f85f8f9-z9k4p   1/1     Running   0          15s
+NAME                   TYPE        CLUSTER-IP      EXTERNAL-IP   PORT(S)        AGE
+service/cluster-demo   NodePort    10.43.222.100   <none>        80:30084/TCP   2m
+service/kubernetes     ClusterIP   10.43.0.1       <none>        443/TCP        1d
+
+NAME                           READY   UP-TO-DATE   AVAILABLE   AGE
+deployment.apps/cluster-demo   4/4     4            4           2m
+
+NAME                                      DESIRED   CURRENT   READY   AGE
+replicaset.apps/cluster-demo-7d7f85f8f9   4         4         4       2m
 ```
 
 ::: tip
@@ -198,23 +206,34 @@ kubectl delete pod cluster-demo-7d7f85f8f9-2m8kt
 
 ::: tip
 Pod 名は環境ごとに異なります。
-`kubectl get pods -l app=cluster-demo` の結果に表示された名前に置き換えてください。
+`kubectl get all` の `pod/cluster-demo-...` に表示された名前に置き換えてください。
+`kubectl delete pod` では、先頭の `pod/` は付けずに指定します。
 :::
 
 もう一度確認します。
 
 ```bash
-kubectl get pods -l app=cluster-demo
+kubectl get all
 ```
 
 実行結果例:
 
 ```bash
-NAME                            READY   STATUS    RESTARTS   AGE
-cluster-demo-7d7f85f8f9-qz6fp   1/1     Running   0          3m
-cluster-demo-7d7f85f8f9-t6x7b   1/1     Running   0          1m
-cluster-demo-7d7f85f8f9-z9k4p   1/1     Running   0          1m
-cluster-demo-7d7f85f8f9-w4n8d   1/1     Running   0          10s
+NAME                                READY   STATUS    RESTARTS   AGE
+pod/cluster-demo-7d7f85f8f9-qz6fp   1/1     Running   0          3m
+pod/cluster-demo-7d7f85f8f9-t6x7b   1/1     Running   0          1m
+pod/cluster-demo-7d7f85f8f9-z9k4p   1/1     Running   0          1m
+pod/cluster-demo-7d7f85f8f9-w4n8d   1/1     Running   0          10s
+
+NAME                   TYPE        CLUSTER-IP      EXTERNAL-IP   PORT(S)        AGE
+service/cluster-demo   NodePort    10.43.222.100   <none>        80:30084/TCP   3m
+service/kubernetes     ClusterIP   10.43.0.1       <none>        443/TCP        1d
+
+NAME                           READY   UP-TO-DATE   AVAILABLE   AGE
+deployment.apps/cluster-demo   4/4     4            4           3m
+
+NAME                                      DESIRED   CURRENT   READY   AGE
+replicaset.apps/cluster-demo-7d7f85f8f9   4         4         4       3m
 ```
 
 削除した Pod とは別の名前で、新しい Pod が作成されていれば成功です。
@@ -281,7 +300,7 @@ kubectl rollout undo deployment/cluster-demo
 
 ```bash
 kubectl rollout status deployment/cluster-demo
-kubectl get pods -l app=cluster-demo
+kubectl get all
 ```
 
 もう一度アクセスし、表示が `Cluster demo v1` に戻っていることを確認します。

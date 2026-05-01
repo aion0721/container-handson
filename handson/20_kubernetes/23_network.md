@@ -7,9 +7,17 @@
 
 ![Service と Ingress の流れ](/flows/23_network.svg)
 
-前の章では `NodePort` を使ってアプリにアクセスしました。
+前の章では `NodePort` を使って、`http://localhost:30080` のようにポート番号を指定してアプリにアクセスしました。
 
-この章では、Kubernetes でよく使う公開の流れである `Service` と `Ingress` を使って、HTTP アクセスをルーティングします。
+この章では、`Service` と `Ingress` の役割の違いを確認します。
+ポイントは、`Service` はポートを使って Pod へつなぎ、`Ingress` は `my-httpd.localhost` のような名前を使って HTTP アクセスを振り分けることです。
+
+つまり、アクセスの見え方は次のように変わります。
+
+```text
+Service: http://localhost:30080 のようにポート番号でアクセスする
+Ingress: http://my-httpd.localhost のように名前でアクセスする
+```
 
 ::: tip
 k3s では標準で Ingress Controller として Traefik が動作します。
@@ -19,11 +27,11 @@ k3s では標準で Ingress Controller として Traefik が動作します。
 流れは次のようになります。
 
 ```text
-ブラウザ / curl
+ブラウザ / curl（http://my-httpd.localhost）
   ↓
-Ingress
+Ingress（名前で振り分け）
   ↓
-Service
+Service（Pod のポートへ接続）
   ↓
 Pod
 ```
@@ -164,37 +172,47 @@ ingress.networking.k8s.io/my-httpd created
 作成されたリソースを確認します。
 
 ```bash
-kubectl get deployments
-kubectl get pods
-kubectl get svc
+kubectl get all
 kubectl get ingress
 ```
 
 実行結果例:
 
 ```bash
-NAME       READY   UP-TO-DATE   AVAILABLE   AGE
-my-httpd   2/2     2            2           30s
+NAME                            READY   STATUS    RESTARTS   AGE
+pod/my-httpd-7d7f85f8f9-8s2kp   1/1     Running   0          29s
+pod/my-httpd-7d7f85f8f9-v9z4m   1/1     Running   0          29s
 
-NAME                        READY   STATUS    RESTARTS   AGE
-my-httpd-7d7f85f8f9-8s2kp   1/1     Running   0          29s
-my-httpd-7d7f85f8f9-v9z4m   1/1     Running   0          29s
+NAME                 TYPE        CLUSTER-IP      EXTERNAL-IP   PORT(S)   AGE
+service/my-httpd     ClusterIP   10.43.130.41    <none>        80/TCP    30s
+service/kubernetes   ClusterIP   10.43.0.1       <none>        443/TCP   1d
 
-NAME         TYPE        CLUSTER-IP      EXTERNAL-IP   PORT(S)   AGE
-my-httpd     ClusterIP   10.43.130.41    <none>        80/TCP    30s
-kubernetes   ClusterIP   10.43.0.1       <none>        443/TCP   1d
+NAME                       READY   UP-TO-DATE   AVAILABLE   AGE
+deployment.apps/my-httpd   2/2     2            2           30s
+
+NAME                                  DESIRED   CURRENT   READY   AGE
+replicaset.apps/my-httpd-7d7f85f8f9   2         2         2       30s
 
 NAME       CLASS    HOSTS                ADDRESS        PORTS   AGE
 my-httpd   <none>   my-httpd.localhost   192.168.0.10   80      30s
 ```
 
-## 23-3. Service 経由で確認する
+## 23-3. Service はポートで接続する
 
 まずは Kubernetes クラスター内から Service にアクセスできることを確認します。
+Service は、`port: 80` で受けた通信を、Pod 側の `targetPort: 80` へ転送します。
+
+```yaml
+ports:
+  - port: 80
+    targetPort: 80
+```
+
+クラスター内から Service 名とポート番号を指定してアクセスします。
 
 ```bash
 kubectl run curl --image=docker.io/curlimages/curl:8.7.1 --rm -it --restart=Never -- \
-  curl http://my-httpd
+  curl http://my-httpd:80
 ```
 
 実行結果例:
@@ -206,18 +224,43 @@ kubectl run curl --image=docker.io/curlimages/curl:8.7.1 --rm -it --restart=Neve
 ::: tip
 `my-httpd` は Service 名です。
 同じ Namespace 内の Pod からは、Service 名でアクセスできます。
+前の章の `NodePort` では、クラスター外から `localhost:30080` のようにポート番号でアクセスしました。
 :::
 
-## 23-4. Ingress 経由でアクセスする
+## 23-4. Ingress は名前で振り分ける
 
 次に、Ingress 経由でアクセスします。
+Ingress では、`host: my-httpd.localhost` のようにホスト名を指定して、どの Service へ流すかを決めます。
+
+```yaml
+rules:
+  - host: my-httpd.localhost
+```
+
+ローカル環境で `my-httpd.localhost` が名前解決できる場合は、次のようにアクセスできます。
+
+```bash
+curl http://my-httpd.localhost
+```
+
+実行結果例:
+
+```html
+<html><body><h1>It works!</h1></body></html>
+```
+
+ここでは `http://localhost:30080` のようなアプリ用の `NodePort` は指定していません。
+Ingress が `my-httpd.localhost` という名前を見て、`my-httpd` Service へルーティングしています。
+
+SSH 接続先の Linux サーバー上で作業している場合など、手元の端末から `my-httpd.localhost` でアクセスできないときは、Node の IP アドレスと `Host` ヘッダーを使って確認します。
+
 まず k3s の Node の IP アドレスを確認します。
 
 ```bash
 kubectl get nodes -o wide
 ```
 
-表示された `INTERNAL-IP` を使って、`Host` ヘッダーを指定して確認します。
+表示された `INTERNAL-IP` を使って、`Host` ヘッダーに `my-httpd.localhost` を指定します。
 
 ```bash
 curl -H "Host: my-httpd.localhost" http://<Node の INTERNAL-IP>
@@ -237,9 +280,7 @@ k3s を自分の PC 上で動かしている場合は、次のように `localho
 curl -H "Host: my-httpd.localhost" http://localhost
 ```
 
-::: tip
-ローカル環境で `my-httpd.localhost` が名前解決できる場合は、ブラウザで `http://my-httpd.localhost` を開いても確認できます。
-:::
+ブラウザで確認する場合も、`http://my-httpd.localhost` を開きます。
 
 ## 23-5. ルーティングを確認する
 
@@ -274,7 +315,6 @@ kubectl delete -f network.yaml
 削除されたことを確認します。
 
 ```bash
-kubectl get deployments
-kubectl get svc
+kubectl get all
 kubectl get ingress
 ```

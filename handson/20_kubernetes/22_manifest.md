@@ -110,23 +110,24 @@ service/my-httpd created
 確認します。
 
 ```bash
-kubectl get deployments
-kubectl get pods
-kubectl get svc
+kubectl get all
 ```
 
 実行結果例:
 
 ```bash
-NAME       READY   UP-TO-DATE   AVAILABLE   AGE
-my-httpd   1/1     1            1           20s
+NAME                            READY   STATUS    RESTARTS   AGE
+pod/my-httpd-7d7f85f8f9-zx2cl   1/1     Running   0          19s
 
-NAME                        READY   STATUS    RESTARTS   AGE
-my-httpd-7d7f85f8f9-zx2cl   1/1     Running   0          19s
+NAME                 TYPE        CLUSTER-IP      EXTERNAL-IP   PORT(S)        AGE
+service/my-httpd     NodePort    10.43.130.41    <none>        80:30080/TCP   20s
+service/kubernetes   ClusterIP   10.43.0.1       <none>        443/TCP        1d
 
-NAME         TYPE       CLUSTER-IP      EXTERNAL-IP   PORT(S)        AGE
-my-httpd     NodePort   10.43.130.41    <none>        80:30080/TCP   20s
-kubernetes   ClusterIP  10.43.0.1       <none>        443/TCP        1d
+NAME                       READY   UP-TO-DATE   AVAILABLE   AGE
+deployment.apps/my-httpd   1/1     1            1           20s
+
+NAME                                  DESIRED   CURRENT   READY   AGE
+replicaset.apps/my-httpd-7d7f85f8f9   1         1         1       20s
 ```
 
 アクセス確認:
@@ -162,47 +163,35 @@ service/my-httpd unchanged
 Pod の数を確認します。
 
 ```bash
-kubectl get deployments
-kubectl get replicasets
-kubectl get pods
+kubectl get all
 ```
 
 実行結果例:
 
 ```bash
-NAME       READY   UP-TO-DATE   AVAILABLE   AGE
-my-httpd   3/3     3            3           3m
+NAME                            READY   STATUS    RESTARTS   AGE
+pod/my-httpd-7d7f85f8f9-2qk6l   1/1     Running   0          18s
+pod/my-httpd-7d7f85f8f9-bz9mp   1/1     Running   0          3m
+pod/my-httpd-7d7f85f8f9-xn4td   1/1     Running   0          18s
 
-NAME                  DESIRED   CURRENT   READY   AGE
-my-httpd-7d7f85f8f9   3         3         3       3m
+NAME                 TYPE        CLUSTER-IP      EXTERNAL-IP   PORT(S)        AGE
+service/my-httpd     NodePort    10.43.130.41    <none>        80:30080/TCP   3m
+service/kubernetes   ClusterIP   10.43.0.1       <none>        443/TCP        1d
 
-NAME                        READY   STATUS    RESTARTS   AGE
-my-httpd-7d7f85f8f9-2qk6l   1/1     Running   0          18s
-my-httpd-7d7f85f8f9-bz9mp   1/1     Running   0          3m
-my-httpd-7d7f85f8f9-xn4td   1/1     Running   0          18s
+NAME                       READY   UP-TO-DATE   AVAILABLE   AGE
+deployment.apps/my-httpd   3/3     3            3           3m
+
+NAME                                  DESIRED   CURRENT   READY   AGE
+replicaset.apps/my-httpd-7d7f85f8f9   3         3         3       3m
 ```
 
 `replicas: 3` と書いた状態に近づけるために、Kubernetes が Pod を 3 つに増やしています。
 このように、Manifest を変更して `apply` すると、現在の状態が Manifest に書いた状態へ更新されます。
 
-このあとの手順では Pod が 1 つの状態で進めるため、`replicas` を `1` に戻します。
-
-```bash
-sed -i 's/replicas: 3/replicas: 1/' my-httpd.yaml
-kubectl apply -f my-httpd.yaml
-```
-
-Pod が 1 つに戻ったことを確認します。
-
-```bash
-kubectl get deployments
-kubectl get pods
-```
-
 ## 22-4. Pod を削除して自然復旧を確認する
 
 Deployment は、指定した数の Pod が動き続けるように管理します。
-試しに Pod を 1 つ削除して、自然に復旧することを確認します。
+試しに 3 つある Pod のうち 1 つを削除して、自然に復旧することを確認します。
 
 まず Pod 名を確認します。
 
@@ -214,13 +203,15 @@ kubectl get pods
 
 ```bash
 NAME                        READY   STATUS    RESTARTS   AGE
-my-httpd-7d7f85f8f9-zx2cl   1/1     Running   0          2m
+my-httpd-7d7f85f8f9-2qk6l   1/1     Running   0          1m
+my-httpd-7d7f85f8f9-bz9mp   1/1     Running   0          4m
+my-httpd-7d7f85f8f9-xn4td   1/1     Running   0          1m
 ```
 
-Pod を削除します。
+このうち 1 つの Pod を削除します。
 
 ```bash
-kubectl delete pod my-httpd-7d7f85f8f9-zx2cl
+kubectl delete pod my-httpd-7d7f85f8f9-2qk6l
 ```
 
 ::: tip
@@ -238,11 +229,13 @@ kubectl get pods
 
 ```bash
 NAME                        READY   STATUS    RESTARTS   AGE
+my-httpd-7d7f85f8f9-bz9mp   1/1     Running   0          4m
 my-httpd-7d7f85f8f9-k8m2n   1/1     Running   0          12s
+my-httpd-7d7f85f8f9-xn4td   1/1     Running   0          1m
 ```
 
-削除した Pod とは別の名前で、新しい Pod が作成されていれば成功です。
-Deployment が `replicas: 1` の状態を保つために、自動で Pod を作り直しています。
+削除した Pod とは別の名前で新しい Pod が作成され、合計 3 つの Pod に戻っていれば成功です。
+Deployment が `replicas: 3` の状態を保つために、自動で Pod を作り直しています。
 
 ::: info
 Pod を直接作成しただけの場合は、このような自動復旧は行われません。
