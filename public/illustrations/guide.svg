@@ -1,9 +1,44 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 960 320">
-  <rect width="960" height="320" fill="#f8fafc"/>
-  <text x="40" y="70" font-size="34" font-family="Arial" font-weight="700" fill="#0f172a">学習前に押さえる概念マップ</text>
-  <rect x="120" y="120" width="280" height="130" rx="16" fill="#dbeafe" stroke="#2563eb"/>
-  <text x="180" y="195" font-size="30" font-family="Arial" fill="#1e3a8a">Container</text>
-  <rect x="560" y="120" width="280" height="130" rx="16" fill="#dcfce7" stroke="#16a34a"/>
-  <text x="665" y="195" font-size="30" font-family="Arial" fill="#14532d">k3s</text>
-  <path d="M410 185h140" stroke="#334155" stroke-width="8" stroke-linecap="round"/>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 960 360" role="img" aria-labelledby="t d">
+  <title id="t">ガイドの概念マップ</title>
+  <desc id="d">コンテナ、イメージ、Pod、k3s の関係を学ぶための概念図</desc>
+  <defs>
+    <linearGradient id="bg" x1="0" x2="1" y1="0" y2="1">
+      <stop offset="0" stop-color="#f8fafc"/>
+      <stop offset="1" stop-color="#eef6ff"/>
+    </linearGradient>
+    <filter id="shadow" x="-12%" y="-20%" width="124%" height="150%">
+      <feDropShadow dx="0" dy="10" stdDeviation="12" flood-color="#0f172a" flood-opacity=".12"/>
+    </filter>
+  </defs>
+
+  <rect width="960" height="360" fill="url(#bg)"/>
+  <text x="54" y="58" font-size="26" font-family="Arial, sans-serif" font-weight="700" fill="#0f172a">まずは全体像をつかむ</text>
+  <text x="54" y="90" font-size="15" font-family="Arial, sans-serif" fill="#475569">container / image / pod / cluster</text>
+
+  <g filter="url(#shadow)">
+    <rect x="84" y="140" width="190" height="116" rx="12" fill="#ffffff"/>
+    <rect x="112" y="164" width="54" height="54" rx="8" fill="#dbeafe" stroke="#2563eb" stroke-width="2"/>
+    <rect x="154" y="184" width="54" height="54" rx="8" fill="#eff6ff" stroke="#60a5fa" stroke-width="2"/>
+    <text x="118" y="288" font-size="16" font-family="Arial, sans-serif" font-weight="700" fill="#1e3a8a">Container</text>
+  </g>
+
+  <g filter="url(#shadow)">
+    <rect x="384" y="112" width="192" height="170" rx="14" fill="#ffffff"/>
+    <path d="M426 174h108M426 198h82M426 222h96" stroke="#16a34a" stroke-width="5" stroke-linecap="round"/>
+    <rect x="414" y="142" width="132" height="108" rx="10" fill="#f0fdf4" stroke="#16a34a" stroke-width="2"/>
+    <text x="432" y="314" font-size="16" font-family="Arial, sans-serif" font-weight="700" fill="#166534">Image</text>
+  </g>
+
+  <g filter="url(#shadow)">
+    <rect x="690" y="130" width="192" height="138" rx="14" fill="#ffffff"/>
+    <circle cx="752" cy="188" r="22" fill="#dcfce7" stroke="#16a34a" stroke-width="2"/>
+    <circle cx="812" cy="188" r="22" fill="#dbeafe" stroke="#2563eb" stroke-width="2"/>
+    <path d="M752 218v24M812 218v24M752 242h60" stroke="#94a3b8" stroke-width="3" stroke-linecap="round"/>
+    <text x="742" y="300" font-size="16" font-family="Arial, sans-serif" font-weight="700" fill="#0f172a">k3s Cluster</text>
+  </g>
+
+  <g fill="none" stroke="#94a3b8" stroke-width="4" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M286 200h82"/>
+    <path d="M590 200h84"/>
+  </g>
 </svg>

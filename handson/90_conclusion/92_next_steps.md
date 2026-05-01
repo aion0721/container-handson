@@ -42,8 +42,8 @@ kubectl delete pod <pod_name>
 kubectl scale deployment <deployment_name> --replicas=3
 kubectl rollout status deployment/<deployment_name>
 kubectl rollout undo deployment/<deployment_name>
-kubectl apply -f deployment.yaml
-kubectl delete -f deployment.yaml
+kubectl apply -f my-httpd.yaml
+kubectl delete -f my-httpd.yaml
 kubectl run httpd --image=docker.io/library/httpd:2.4 --port=80
 kubectl expose pod httpd --type=NodePort --port=80
 kubectl describe ingress <ingress_name>
