@@ -60,9 +60,9 @@ COMMIT simple-app:v1
 Successfully tagged localhost/simple-app:v1
 ```
 
-## 31-4. レジストリに push する
+## 31-4. レジストリにプッシュする
 
-k3s から参照できるレジストリに push してください。
+k3s から参照できるレジストリにプッシュしてください。
 ここでは例として `registry.example.local` を利用します。
 
 ```bash

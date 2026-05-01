@@ -1,4 +1,4 @@
-# 90.まとめ
+# 90. まとめ
 
 ![ページのイメージ図](/illustrations/conclusion.svg)
 

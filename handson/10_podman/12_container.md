@@ -25,7 +25,7 @@ podman run -d --name my-httpd -p 8080:80 docker.io/library/httpd:2.4
 3f3de8e2fb38f95e35f6c4fb4d4f7f4d0f0a0b8f8f2c1db92d761e33f6c12abc
 ```
 
-オプションの意味は以下の通りです。
+オプションの意味は次の通りです。
 
 - `-d`: バックグラウンド起動
 - `--name my-httpd`: コンテナ名を指定
@@ -70,7 +70,7 @@ podman stop my-httpd
 podman ps
 ```
 
-停止済みコンテナも含めて確認する場合は以下です。
+停止済みコンテナも含めて確認する場合は、次のコマンドを使います。
 
 ```bash
 podman ps -a

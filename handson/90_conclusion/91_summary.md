@@ -10,9 +10,11 @@
 - `podman stop` / `podman rm` で停止・削除する
 - `Containerfile` を使って独自イメージをビルドする
 - `kubectl apply` で Kubernetes にデプロイする
+- Deployment による Pod の自然復旧を確認する
+- Service と Ingress でアプリへのアクセス経路を作る
 - 簡単なアプリを k3s 上で公開する
 
-コンテナを扱ううえでは、まずは以下の 3 つを押さえるのが大切です。
+コンテナを扱ううえでは、まずは次の 3 つを押さえるのが大切です。
 
 1. イメージを取得する
 2. コンテナを動かす
@@ -35,4 +37,4 @@
 - Pod が `Running` にならない: `kubectl describe pod <pod_name>` / `kubectl logs <pod_name>`
 - Service 経由でつながらない: `kubectl get svc` と `kubectl get endpoints` で関連付けを確認
 - Manifest の反映差分を見たい: `kubectl diff -f <manifest.yaml>`
-
+- Ingress のルーティングを確認したい: `kubectl describe ingress <ingress_name>`

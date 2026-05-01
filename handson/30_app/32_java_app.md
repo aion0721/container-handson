@@ -41,7 +41,7 @@ EXPOSE 8080
 ENTRYPOINT ["java", "-jar", "/app/app.jar"]
 ```
 
-## 32-4. イメージをビルドして push する
+## 32-4. イメージをビルドしてプッシュする
 
 ```bash
 podman build -t java-sample:v1 .

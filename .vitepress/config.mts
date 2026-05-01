@@ -106,7 +106,7 @@ export default defineConfig({
           link: "/guide/container",
         },
         {
-          text: "k3sとは",
+          text: "k3s とは",
           link: "/guide/k3s",
         },
       ],

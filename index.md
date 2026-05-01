@@ -4,7 +4,7 @@ layout: home
 
 hero:
   name: "Container-Handson"
-  text: "podman, kubernetes..."
+  text: "Podman, Kubernetes..."
   tagline: Podman と k3s の学習と実践
   image:
     src: /logo.svg

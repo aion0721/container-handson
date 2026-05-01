@@ -7,7 +7,7 @@
 
 - `podman logs` でログを確認する
 - `podman exec` でコンテナの中に入る
-- Kubernetes の `Ingress` を使って公開する
+- Ingress で複数のアプリをパスごとに公開する
 - Deployment のレプリカ数を増やす
 - ConfigMap を使って設定値を外出しする
 
@@ -35,8 +35,11 @@ podman build -t my-httpd:v1 .
 kubectl get pods
 kubectl get svc
 kubectl get deployments
+kubectl get ingress
+kubectl delete pod <pod_name>
 kubectl apply -f deployment.yaml
 kubectl delete -f deployment.yaml
 kubectl run httpd --image=docker.io/library/httpd:2.4 --port=80
 kubectl expose pod httpd --type=NodePort --port=80
+kubectl describe ingress <ingress_name>
 ```

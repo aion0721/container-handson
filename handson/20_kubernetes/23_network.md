@@ -150,6 +150,7 @@ kubectl run curl --image=docker.io/curlimages/curl:8.7.1 --rm -it --restart=Neve
 ## 23-4. Ingress 経由でアクセスする
 
 次に、Ingress 経由でアクセスします。
+ローカルの k3s 環境で実行している場合は、次のコマンドで確認できます。
 
 ```bash
 curl http://my-httpd.localhost
@@ -168,13 +169,15 @@ http://my-httpd.localhost
 ```
 
 ::: warning
-環境によっては `my-httpd.localhost` がうまく解決できない場合があります。
+環境によっては `my-httpd.localhost` がうまく解決できない場合や、k3s が別のマシン上で動いている場合があります。
 その場合は、`Host` ヘッダーを指定して確認します。
 :::
 
 ```bash
 curl -H "Host: my-httpd.localhost" http://localhost
 ```
+
+k3s が別のマシン上で動いている場合は、`localhost` の部分をそのマシンの IP アドレスに置き換えてください。
 
 ## 23-5. ルーティングを確認する
 
