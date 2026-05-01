@@ -1,0 +1,50 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 960 360" role="img" aria-labelledby="t d">
+  <title id="t">Linux 環境への接続パターン</title>
+  <desc id="d">SSH で外部の Linux サーバーに接続するパターンと、手元の端末内の WSL で作業するパターンを並べた図</desc>
+  <defs>
+    <marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto">
+      <path d="M0 0l10 5-10 5z" fill="#64748b"/>
+    </marker>
+    <filter id="shadow" x="-10%" y="-20%" width="120%" height="140%">
+      <feDropShadow dx="0" dy="8" stdDeviation="10" flood-color="#0f172a" flood-opacity=".10"/>
+    </filter>
+  </defs>
+
+  <rect width="960" height="360" rx="14" fill="#f8fafc"/>
+  <text x="40" y="44" font-size="24" font-family="Arial, sans-serif" font-weight="700" fill="#0f172a">Linux 環境に接続して作業する 2 つのパターン</text>
+  <text x="40" y="72" font-size="14" font-family="Arial, sans-serif" fill="#64748b">どちらの場合も、ハンズオンのコマンドは Linux 環境の中で実行します。</text>
+
+  <g filter="url(#shadow)">
+    <rect x="40" y="108" width="420" height="210" rx="14" fill="#ffffff"/>
+    <text x="68" y="144" font-size="18" font-family="Arial, sans-serif" font-weight="700" fill="#1d4ed8">パターン A: SSH でサーバーに接続</text>
+
+    <rect x="70" y="184" width="118" height="78" rx="10" fill="#eff6ff" stroke="#2563eb" stroke-width="2"/>
+    <rect x="90" y="202" width="78" height="42" rx="5" fill="#dbeafe" stroke="#2563eb" stroke-width="2"/>
+    <rect x="106" y="250" width="46" height="8" rx="4" fill="#2563eb"/>
+    <text x="86" y="286" font-size="14" font-family="Arial, sans-serif" font-weight="700" fill="#1e3a8a">自分の端末</text>
+
+    <path d="M204 224h92" stroke="#64748b" stroke-width="4" stroke-linecap="round" marker-end="url(#arrow)"/>
+    <text x="226" y="210" font-size="14" font-family="Menlo, Consolas, monospace" fill="#475569">ssh</text>
+
+    <rect x="314" y="176" width="104" height="94" rx="10" fill="#f0fdf4" stroke="#16a34a" stroke-width="2"/>
+    <rect x="336" y="194" width="60" height="12" rx="6" fill="#16a34a"/>
+    <rect x="336" y="216" width="60" height="12" rx="6" fill="#86efac"/>
+    <rect x="336" y="238" width="60" height="12" rx="6" fill="#86efac"/>
+    <text x="321" y="286" font-size="14" font-family="Arial, sans-serif" font-weight="700" fill="#166534">Linux サーバー</text>
+  </g>
+
+  <g filter="url(#shadow)">
+    <rect x="500" y="108" width="420" height="210" rx="14" fill="#ffffff"/>
+    <text x="528" y="144" font-size="18" font-family="Arial, sans-serif" font-weight="700" fill="#15803d">パターン B: 手元の端末内で Linux を使う</text>
+
+    <rect x="562" y="172" width="242" height="116" rx="12" fill="#eff6ff" stroke="#2563eb" stroke-width="2"/>
+    <text x="584" y="202" font-size="15" font-family="Arial, sans-serif" font-weight="700" fill="#1e3a8a">自分の端末</text>
+
+    <rect x="604" y="218" width="158" height="50" rx="9" fill="#f0fdf4" stroke="#16a34a" stroke-width="2"/>
+    <text x="654" y="248" font-size="15" font-family="Arial, sans-serif" font-weight="700" fill="#166534">WSL</text>
+    <text x="620" y="300" font-size="14" font-family="Arial, sans-serif" font-weight="700" fill="#166534">端末内の Linux 環境</text>
+
+    <path d="M554 230h34" stroke="#64748b" stroke-width="4" stroke-linecap="round" marker-end="url(#arrow)"/>
+    <text x="528" y="218" font-size="14" font-family="Menlo, Consolas, monospace" fill="#475569">wsl</text>
+  </g>
+</svg>
