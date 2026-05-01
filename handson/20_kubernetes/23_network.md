@@ -15,7 +15,7 @@
 つまり、アクセスの見え方は次のように変わります。
 
 ```text
-Service: http://localhost:30080 のようにポート番号でアクセスする
+Service: http://localhost:30083 のようにポート番号でアクセスする
 Ingress: http://my-httpd.localhost のように名前でアクセスする
 ```
 
@@ -73,7 +73,8 @@ spec:
   ports:
     - port: 80
       targetPort: 80
-  type: ClusterIP
+      nodePort: 30083
+  type: NodePort
 
 ---
 apiVersion: networking.k8s.io/v1
@@ -129,7 +130,8 @@ spec:
   ports:
     - port: 80
       targetPort: 80
-  type: ClusterIP
+      nodePort: 30083
+  type: NodePort
 
 ---
 apiVersion: networking.k8s.io/v1
@@ -151,11 +153,16 @@ spec:
 ```
 
 ::: tip
-`Service` の `type` は `ClusterIP` です。
-`NodePort` のように直接ポートを公開せず、Ingress から Service に接続します。
+ここでは比較しやすいように、`Service` の `type` を `NodePort` にしています。
+Ingress も同じ Service の `port: 80` に接続します。
 :::
 
 ## 23-2. デプロイする
+
+::: warning
+この章では分かりやすさのために `nodePort: 30083` を固定しています。
+同じクラスターを複数人で共有する場合は、受講者ごとに Namespace や NodePort を分けてください。
+:::
 
 ```bash
 kubectl apply -f network.yaml
@@ -183,9 +190,9 @@ NAME                            READY   STATUS    RESTARTS   AGE
 pod/my-httpd-7d7f85f8f9-8s2kp   1/1     Running   0          29s
 pod/my-httpd-7d7f85f8f9-v9z4m   1/1     Running   0          29s
 
-NAME                 TYPE        CLUSTER-IP      EXTERNAL-IP   PORT(S)   AGE
-service/my-httpd     ClusterIP   10.43.130.41    <none>        80/TCP    30s
-service/kubernetes   ClusterIP   10.43.0.1       <none>        443/TCP   1d
+NAME                 TYPE        CLUSTER-IP      EXTERNAL-IP   PORT(S)        AGE
+service/my-httpd     NodePort    10.43.130.41    <none>        80:30083/TCP   30s
+service/kubernetes   ClusterIP   10.43.0.1       <none>        443/TCP        1d
 
 NAME                       READY   UP-TO-DATE   AVAILABLE   AGE
 deployment.apps/my-httpd   2/2     2            2           30s
@@ -199,20 +206,20 @@ my-httpd   <none>   my-httpd.localhost   192.168.0.10   80      30s
 
 ## 23-3. Service はポートで接続する
 
-まずは Kubernetes クラスター内から Service にアクセスできることを確認します。
-Service は、`port: 80` で受けた通信を、Pod 側の `targetPort: 80` へ転送します。
+まずは Service 経由でアクセスできることを確認します。
+`NodePort` の Service は、ホスト側の `nodePort: 30083` で受けた通信を、Service の `port: 80`、Pod 側の `targetPort: 80` へ転送します。
 
 ```yaml
 ports:
   - port: 80
     targetPort: 80
+    nodePort: 30083
 ```
 
-クラスター内から Service 名とポート番号を指定してアクセスします。
+ホスト側から、ポート番号を指定してアクセスします。
 
 ```bash
-kubectl run curl --image=docker.io/curlimages/curl:8.7.1 --rm -it --restart=Never -- \
-  curl http://my-httpd:80
+curl http://localhost:30083
 ```
 
 実行結果例:
@@ -222,9 +229,8 @@ kubectl run curl --image=docker.io/curlimages/curl:8.7.1 --rm -it --restart=Neve
 ```
 
 ::: tip
-`my-httpd` は Service 名です。
-同じ Namespace 内の Pod からは、Service 名でアクセスできます。
-前の章の `NodePort` では、クラスター外から `localhost:30080` のようにポート番号でアクセスしました。
+同じ Namespace 内の Pod からは、`http://my-httpd:80` のように Service 名でもアクセスできます。
+ただし、この章で比較したいポイントは、外から見ると Service は `localhost:30083` のようにポート番号でアクセスする、という点です。
 :::
 
 ## 23-4. Ingress は名前で振り分ける
@@ -249,7 +255,7 @@ curl http://my-httpd.localhost
 <html><body><h1>It works!</h1></body></html>
 ```
 
-ここでは `http://localhost:30080` のようなアプリ用の `NodePort` は指定していません。
+ここでは `http://localhost:30083` のようなアプリ用の `NodePort` は指定していません。
 Ingress が `my-httpd.localhost` という名前を見て、`my-httpd` Service へルーティングしています。
 
 SSH 接続先の Linux サーバー上で作業している場合など、手元の端末から `my-httpd.localhost` でアクセスできないときは、Node の IP アドレスと `Host` ヘッダーを使って確認します。
@@ -282,7 +288,57 @@ curl -H "Host: my-httpd.localhost" http://localhost
 
 ブラウザで確認する場合も、`http://my-httpd.localhost` を開きます。
 
-## 23-5. ルーティングを確認する
+## 23-5. 発展: nip.io で名前解決する
+
+`my-httpd.localhost` はローカル環境では便利ですが、SSH 接続先の Linux サーバーや共有サーバーでは、手元のブラウザからそのまま名前解決できないことがあります。
+そのようなときは、`nip.io` のようなワイルドカード DNS サービスを使うと、`/etc/hosts` を編集せずに名前ベースのアクセスを試せます。
+
+`nip.io` は、ホスト名に含まれる IP アドレスへ名前解決してくれるサービスです。
+たとえば、`my-httpd.192.168.0.10.nip.io` は `192.168.0.10` に解決されます。
+
+まず k3s の Node の IP アドレスを確認します。
+
+```bash
+kubectl get nodes -o wide
+```
+
+表示された `INTERNAL-IP` が `192.168.0.10` だった場合、Ingress の `host` を次のように変更します。
+
+```yaml
+rules:
+  - host: my-httpd.192.168.0.10.nip.io
+```
+
+`network.yaml` を編集したら、再度 `apply` します。
+
+```bash
+kubectl apply -f network.yaml
+```
+
+名前ベースでアクセスします。
+
+```bash
+curl http://my-httpd.192.168.0.10.nip.io
+```
+
+実行結果例:
+
+```html
+<html><body><h1>It works!</h1></body></html>
+```
+
+ブラウザからも `http://my-httpd.192.168.0.10.nip.io` のような URL で確認できます。
+IP アドレスが変わる場合は、Ingress の `host` も新しい IP アドレスに合わせて変更してください。
+
+::: warning
+`nip.io` は外部の DNS サービスです。
+ネットワーク環境によっては、プライベート IP アドレスへの名前解決が DNS Rebinding Protection によってブロックされる場合があります。
+その場合は、`Host` ヘッダーを指定する方法や `/etc/hosts` を使う方法で確認してください。
+:::
+
+参考: [nip.io](https://nip.io/)
+
+## 23-6. ルーティングを確認する
 
 Ingress の詳細を確認します。
 
@@ -292,7 +348,7 @@ kubectl describe ingress my-httpd
 
 確認するポイント:
 
-- `Host` が `my-httpd.localhost` になっていること
+- `Host` が `my-httpd.localhost`、または発展手順で設定した `my-httpd.<Node IP>.nip.io` になっていること
 - `Backend` が `my-httpd:80` になっていること
 - `Rules` に `/` のルーティングがあること
 
@@ -306,7 +362,7 @@ kubectl get ingress my-httpd
 
 `endpoints` には、Service の接続先になっている Pod の IP アドレスが表示されます。
 
-## 23-6. 削除する
+## 23-7. 削除する
 
 ```bash
 kubectl delete -f network.yaml
