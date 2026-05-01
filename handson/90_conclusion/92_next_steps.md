@@ -37,6 +37,9 @@ kubectl get svc
 kubectl get deployments
 kubectl get ingress
 kubectl delete pod <pod_name>
+kubectl scale deployment <deployment_name> --replicas=3
+kubectl rollout status deployment/<deployment_name>
+kubectl rollout undo deployment/<deployment_name>
 kubectl apply -f deployment.yaml
 kubectl delete -f deployment.yaml
 kubectl run httpd --image=docker.io/library/httpd:2.4 --port=80

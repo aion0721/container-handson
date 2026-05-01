@@ -5,7 +5,9 @@ export default defineConfig({
   title: "Container-Handson",
   description: "podman, kubernetes...",
   base: "/container-handson",
-  head: [["link", { rel: "icon", type: "image/svg+xml", href: "/favicon.svg" }]],
+  head: [
+    ["link", { rel: "icon", type: "image/svg+xml", href: "/favicon.svg" }],
+  ],
   themeConfig: {
     logo: {
       src: "/logo.svg",
@@ -51,16 +53,20 @@ export default defineConfig({
           collapsed: true,
           items: [
             {
-              text: "21. k3s を使って簡易的に起動する",
+              text: "21. k3s を使って簡易的に起動",
               link: "/handson/20_kubernetes/21_k3s",
             },
             {
-              text: "22. Manifest でデプロイする",
+              text: "22. Manifest でデプロイ",
               link: "/handson/20_kubernetes/22_manifest",
             },
             {
-              text: "23. Service と Ingress で公開する",
+              text: "23. Service と Ingress で公開",
               link: "/handson/20_kubernetes/23_network",
+            },
+            {
+              text: "24. クラスターのメリットを体験",
+              link: "/handson/20_kubernetes/24_cluster_merit",
             },
           ],
         },

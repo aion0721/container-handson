@@ -10,3 +10,4 @@
 21. [k3s を使って簡易的に起動する](./21_k3s)
 22. [Manifest でデプロイする](./22_manifest)
 23. [Service と Ingress で公開する](./23_network)
+24. [クラスターのメリットを体験する](./24_cluster_merit)
