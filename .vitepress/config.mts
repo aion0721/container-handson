@@ -58,6 +58,10 @@ export default defineConfig({
               text: "22. Manifest でデプロイする",
               link: "/handson/20_kubernetes/22_manifest",
             },
+            {
+              text: "23. Service と Ingress で公開する",
+              link: "/handson/20_kubernetes/23_network",
+            },
           ],
         },
         {
