@@ -4,6 +4,15 @@
 
 この章では Kubernetes 環境である `k3s` を使って、アプリをデプロイします。
 
+## 作業ディレクトリ
+
+Kubernetes 編では、次のディレクトリを作成して移動してから作業します。
+
+```bash
+mkdir -p ~/container-handson/kubernetes
+cd ~/container-handson/kubernetes
+```
+
 ## セクション
 
 21. [k3s を使って簡易的に起動する](./21_k3s)

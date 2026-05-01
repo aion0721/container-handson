@@ -5,6 +5,15 @@
 
 この章では、`podman` を使った基本操作を実施します。
 
+## 作業ディレクトリ
+
+Podman 編では、次のディレクトリを作成して移動してから作業します。
+
+```bash
+mkdir -p ~/container-handson/podman
+cd ~/container-handson/podman
+```
+
 ## セクション
 
 11. [コンテナイメージの取得と削除](./11_image)
