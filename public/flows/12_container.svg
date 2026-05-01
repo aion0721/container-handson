@@ -1,0 +1,32 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 920 260" role="img" aria-labelledby="t d">
+  <title id="t">コンテナ起動の構成図</title>
+  <desc id="d">ローカルイメージからコンテナを起動し、ホストポートからアクセスする構成</desc>
+  <defs>
+    <marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto-start-reverse">
+      <path d="M0 0l10 5-10 5z" fill="#64748b"/>
+    </marker>
+  </defs>
+  <rect width="920" height="260" rx="14" fill="#f8fafc"/>
+  <text x="40" y="42" font-size="22" font-family="Arial, sans-serif" font-weight="700" fill="#0f172a">ローカルイメージからコンテナを起動し、ポート転送でアクセスする</text>
+
+  <rect x="58" y="112" width="170" height="88" rx="12" fill="#ffffff" stroke="#2563eb" stroke-width="2"/>
+  <rect x="94" y="134" width="98" height="44" rx="8" fill="#dbeafe" stroke="#2563eb"/>
+  <text x="96" y="230" font-size="15" font-family="Arial, sans-serif" font-weight="700" fill="#1d4ed8">Image httpd:2.4</text>
+
+  <rect x="350" y="74" width="242" height="154" rx="16" fill="#ffffff" stroke="#f97316" stroke-width="2"/>
+  <text x="388" y="104" font-size="15" font-family="Arial, sans-serif" font-weight="700" fill="#9a3412">Container: my-httpd</text>
+  <rect x="398" y="132" width="146" height="58" rx="10" fill="#ffedd5" stroke="#f97316"/>
+  <path d="M424 154h94M424 172h64" stroke="#ea580c" stroke-width="5" stroke-linecap="round"/>
+
+  <rect x="702" y="92" width="154" height="118" rx="12" fill="#0f172a"/>
+  <rect x="702" y="92" width="154" height="30" rx="12" fill="#1e293b"/>
+  <text x="728" y="154" font-size="15" font-family="Menlo, Consolas, monospace" fill="#bbf7d0">curl</text>
+  <text x="728" y="180" font-size="15" font-family="Menlo, Consolas, monospace" fill="#bfdbfe">:8080</text>
+
+  <path d="M232 154h106" stroke="#64748b" stroke-width="4" stroke-linecap="round" marker-end="url(#arrow)"/>
+  <text x="262" y="140" font-size="13" font-family="Arial, sans-serif" fill="#475569">podman run</text>
+  <path d="M594 154h96" stroke="#64748b" stroke-width="4" stroke-linecap="round" marker-end="url(#arrow)"/>
+  <text x="614" y="140" font-size="13" font-family="Arial, sans-serif" fill="#475569">8080 → 80</text>
+  <path d="M470 230v20" stroke="#94a3b8" stroke-width="3" stroke-linecap="round"/>
+  <text x="384" y="252" font-size="13" font-family="Arial, sans-serif" fill="#64748b">stop / start / rm で操作</text>
+</svg>

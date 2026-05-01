@@ -1,0 +1,35 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 920 260" role="img" aria-labelledby="t d">
+  <title id="t">イメージ取得と削除の構成図</title>
+  <desc id="d">端末、コンテナレジストリ、ローカルイメージストアの関係を表した図</desc>
+  <defs>
+    <marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto-start-reverse">
+      <path d="M0 0l10 5-10 5z" fill="#64748b"/>
+    </marker>
+  </defs>
+  <rect width="920" height="260" rx="14" fill="#f8fafc"/>
+  <text x="40" y="42" font-size="22" font-family="Arial, sans-serif" font-weight="700" fill="#0f172a">端末から Registry のイメージを取得し、ローカルで確認・削除する</text>
+
+  <rect x="48" y="92" width="188" height="116" rx="12" fill="#0f172a"/>
+  <rect x="48" y="92" width="188" height="30" rx="12" fill="#1e293b"/>
+  <circle cx="68" cy="107" r="4" fill="#ef4444"/>
+  <circle cx="84" cy="107" r="4" fill="#f59e0b"/>
+  <circle cx="100" cy="107" r="4" fill="#22c55e"/>
+  <text x="72" y="154" font-size="15" font-family="Menlo, Consolas, monospace" fill="#bfdbfe">podman pull</text>
+  <text x="72" y="180" font-size="15" font-family="Menlo, Consolas, monospace" fill="#bbf7d0">inspect / rmi</text>
+
+  <rect x="378" y="78" width="178" height="90" rx="12" fill="#ffffff" stroke="#2563eb" stroke-width="2"/>
+  <path d="M426 118c0-18 14-32 41-32s41 14 41 32-14 32-41 32-41-14-41-32z" fill="#dbeafe"/>
+  <text x="420" y="126" font-size="16" font-family="Arial, sans-serif" font-weight="700" fill="#1d4ed8">Registry</text>
+
+  <rect x="650" y="112" width="198" height="96" rx="12" fill="#ffffff" stroke="#16a34a" stroke-width="2"/>
+  <rect x="686" y="138" width="126" height="46" rx="8" fill="#dcfce7" stroke="#16a34a"/>
+  <path d="M706 154h84M706 170h58" stroke="#15803d" stroke-width="5" stroke-linecap="round"/>
+  <text x="692" y="235" font-size="15" font-family="Arial, sans-serif" font-weight="700" fill="#166534">Local image store</text>
+
+  <path d="M240 138h126" stroke="#64748b" stroke-width="4" stroke-linecap="round" marker-end="url(#arrow)"/>
+  <text x="274" y="126" font-size="13" font-family="Arial, sans-serif" fill="#475569">pull</text>
+  <path d="M556 138h82" stroke="#64748b" stroke-width="4" stroke-linecap="round" marker-end="url(#arrow)"/>
+  <text x="582" y="126" font-size="13" font-family="Arial, sans-serif" fill="#475569">保存</text>
+  <path d="M650 190c-118 42-284 38-402 0" fill="none" stroke="#94a3b8" stroke-width="3" stroke-linecap="round" stroke-dasharray="7 7" marker-end="url(#arrow)"/>
+  <text x="394" y="226" font-size="13" font-family="Arial, sans-serif" fill="#64748b">images / inspect / rmi</text>
+</svg>

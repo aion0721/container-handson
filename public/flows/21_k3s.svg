@@ -1,0 +1,31 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 920 260" role="img" aria-labelledby="t d">
+  <title id="t">k3s 簡易起動の構成図</title>
+  <desc id="d">端末から k3s に Pod と NodePort Service を作り、localhost からアクセスする構成</desc>
+  <defs>
+    <marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto-start-reverse">
+      <path d="M0 0l10 5-10 5z" fill="#64748b"/>
+    </marker>
+  </defs>
+  <rect width="920" height="260" rx="14" fill="#f8fafc"/>
+  <text x="40" y="42" font-size="22" font-family="Arial, sans-serif" font-weight="700" fill="#0f172a">k3s の中に Pod と Service を作り、NodePort でアクセスする</text>
+
+  <rect x="48" y="98" width="156" height="104" rx="12" fill="#0f172a"/>
+  <rect x="48" y="98" width="156" height="30" rx="12" fill="#1e293b"/>
+  <text x="72" y="158" font-size="15" font-family="Menlo, Consolas, monospace" fill="#bfdbfe">kubectl</text>
+  <text x="72" y="184" font-size="15" font-family="Menlo, Consolas, monospace" fill="#bbf7d0">curl</text>
+
+  <rect x="300" y="68" width="420" height="154" rx="16" fill="#ffffff" stroke="#2563eb" stroke-width="2"/>
+  <text x="324" y="100" font-size="15" font-family="Arial, sans-serif" font-weight="700" fill="#1d4ed8">k3s cluster</text>
+  <rect x="350" y="128" width="128" height="58" rx="10" fill="#dcfce7" stroke="#16a34a" stroke-width="2"/>
+  <text x="400" y="163" font-size="15" font-family="Arial, sans-serif" font-weight="700" fill="#166534">Pod</text>
+  <rect x="542" y="128" width="128" height="58" rx="10" fill="#eff6ff" stroke="#2563eb" stroke-width="2"/>
+  <text x="574" y="163" font-size="15" font-family="Arial, sans-serif" font-weight="700" fill="#1d4ed8">Service</text>
+
+  <text x="760" y="154" font-size="15" font-family="Arial, sans-serif" font-weight="700" fill="#475569">localhost</text>
+  <text x="760" y="176" font-size="13" font-family="Arial, sans-serif" fill="#64748b">NodePort</text>
+
+  <path d="M208 144h80" stroke="#64748b" stroke-width="4" stroke-linecap="round" marker-end="url(#arrow)"/>
+  <text x="224" y="130" font-size="13" font-family="Arial, sans-serif" fill="#475569">run / expose</text>
+  <path d="M482 157h48" stroke="#64748b" stroke-width="4" stroke-linecap="round" marker-end="url(#arrow)"/>
+  <path d="M674 157h70" stroke="#64748b" stroke-width="4" stroke-linecap="round" marker-end="url(#arrow)"/>
+</svg>

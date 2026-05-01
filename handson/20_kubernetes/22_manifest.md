@@ -3,6 +3,10 @@
 ![ページのイメージ図](/illustrations/kubernetes.svg)
 
 
+## この章でやること
+
+![Manifest デプロイの流れ](/flows/22_manifest.svg)
+
 実際の運用では、コマンド一発よりも YAML で管理することが多いため、Manifest を使ってデプロイします。
 
 ## 22-1. my-httpd.yaml を作成する

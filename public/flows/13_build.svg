@@ -1,0 +1,32 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 920 260" role="img" aria-labelledby="t d">
+  <title id="t">イメージビルドの構成図</title>
+  <desc id="d">HTML と Containerfile から新しいコンテナイメージをビルドし、コンテナとして起動する構成</desc>
+  <defs>
+    <marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto-start-reverse">
+      <path d="M0 0l10 5-10 5z" fill="#64748b"/>
+    </marker>
+  </defs>
+  <rect width="920" height="260" rx="14" fill="#f8fafc"/>
+  <text x="40" y="42" font-size="22" font-family="Arial, sans-serif" font-weight="700" fill="#0f172a">HTML と Containerfile から、自分のイメージを作る</text>
+
+  <rect x="48" y="76" width="236" height="150" rx="14" fill="#ffffff" stroke="#7c3aed" stroke-width="2"/>
+  <text x="78" y="106" font-size="15" font-family="Arial, sans-serif" font-weight="700" fill="#5b21b6">Work directory</text>
+  <rect x="82" y="126" width="78" height="58" rx="8" fill="#f5f3ff" stroke="#7c3aed"/>
+  <text x="99" y="159" font-size="13" font-family="Arial, sans-serif" fill="#5b21b6">HTML</text>
+  <rect x="174" y="126" width="78" height="58" rx="8" fill="#eff6ff" stroke="#2563eb"/>
+  <text x="184" y="159" font-size="13" font-family="Arial, sans-serif" fill="#1d4ed8">Containerfile</text>
+
+  <rect x="390" y="94" width="168" height="104" rx="12" fill="#0f172a"/>
+  <rect x="390" y="94" width="168" height="30" rx="12" fill="#1e293b"/>
+  <text x="416" y="154" font-size="15" font-family="Menlo, Consolas, monospace" fill="#bbf7d0">podman build</text>
+  <text x="438" y="180" font-size="15" font-family="Menlo, Consolas, monospace" fill="#fde68a">my-httpd:v1</text>
+
+  <rect x="676" y="74" width="184" height="152" rx="14" fill="#ffffff" stroke="#16a34a" stroke-width="2"/>
+  <text x="726" y="104" font-size="15" font-family="Arial, sans-serif" font-weight="700" fill="#166534">New image</text>
+  <rect x="716" y="128" width="104" height="48" rx="8" fill="#dcfce7" stroke="#16a34a"/>
+  <path d="M734 146h68M734 162h48" stroke="#15803d" stroke-width="5" stroke-linecap="round"/>
+  <text x="706" y="244" font-size="13" font-family="Arial, sans-serif" fill="#64748b">run / curl / edit / rebuild</text>
+
+  <path d="M288 150h90" stroke="#64748b" stroke-width="4" stroke-linecap="round" marker-end="url(#arrow)"/>
+  <path d="M562 150h102" stroke="#64748b" stroke-width="4" stroke-linecap="round" marker-end="url(#arrow)"/>
+</svg>

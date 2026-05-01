@@ -3,6 +3,10 @@
 ![ページのイメージ図](/illustrations/kubernetes.svg)
 
 
+## この章でやること
+
+![Service と Ingress の流れ](/flows/23_network.svg)
+
 前の章では `NodePort` を使ってアプリにアクセスしました。
 
 この章では、Kubernetes でよく使う公開の流れである `Service` と `Ingress` を使って、HTTP アクセスをルーティングします。
