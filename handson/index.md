@@ -58,6 +58,28 @@
 
 Windows で WSL を使う場合は、PowerShell を開いて `wsl` コマンドを実行し、WSL の Linux 環境に入ってから準備やハンズオンのコマンドを実行してください。
 
+## 作業ディレクトリ
+
+このハンズオンでは、Podman 編と Kubernetes 編で作業ディレクトリを分けて進めます。
+最初に次のディレクトリを作成してください。
+
+```bash
+mkdir -p ~/container-handson/podman
+mkdir -p ~/container-handson/kubernetes
+```
+
+Podman 編では、次のディレクトリに移動してからコマンドを実行します。
+
+```bash
+cd ~/container-handson/podman
+```
+
+Kubernetes 編では、次のディレクトリに移動してからコマンドを実行します。
+
+```bash
+cd ~/container-handson/kubernetes
+```
+
 ::: tip
 コマンドは例として記載しています。環境によって `sudo` が必要な場合があります。
 :::
