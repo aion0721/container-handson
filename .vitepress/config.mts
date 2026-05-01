@@ -75,7 +75,7 @@ export default defineConfig({
           ],
         },
         {
-          text: "30. アプリ編",
+          text: "30. 発展編",
           collapsed: true,
           link: "/handson/30_app/",
           items: [
