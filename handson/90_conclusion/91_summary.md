@@ -9,6 +9,7 @@
 - `podman run` でコンテナを起動する
 - `podman stop` / `podman rm` で停止・削除する
 - `Containerfile` を使って独自イメージをビルドする
+- コンテナの再現性・分離・使い捨てやすさを確認する
 - `kubectl apply` で Kubernetes にデプロイする
 - Deployment による Pod の自然復旧を確認する
 - Service と Ingress でアプリへのアクセス経路を作る

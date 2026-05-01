@@ -27,6 +27,8 @@ podman start my-httpd
 podman rm my-httpd
 podman rmi docker.io/library/httpd:2.4
 podman build -t my-httpd:v1 .
+podman save -o my-httpd-v1.tar my-httpd:v1
+podman load -i my-httpd-v1.tar
 ```
 
 ### Kubernetes

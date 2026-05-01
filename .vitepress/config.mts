@@ -45,6 +45,10 @@ export default defineConfig({
               text: "13. コンテナイメージをビルドして修正する",
               link: "/handson/10_podman/13_build",
             },
+            {
+              text: "14. コンテナのメリットを体験",
+              link: "/handson/10_podman/14_merit",
+            },
           ],
         },
         {
@@ -66,7 +70,7 @@ export default defineConfig({
             },
             {
               text: "24. クラスターのメリットを体験",
-              link: "/handson/20_kubernetes/24_cluster_merit",
+              link: "/handson/20_kubernetes/24_merit",
             },
           ],
         },
