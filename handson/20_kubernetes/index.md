@@ -17,5 +17,6 @@ cd ~/container-handson/kubernetes
 
 21. [k3s を使って簡易的に起動する](./21_k3s)
 22. [Manifest でデプロイする](./22_manifest)
-23. [Service と Ingress で公開する](./23_network)
-24. [クラスターのメリットを体験する](./24_merit)
+23. [Service で公開する](./23_service)
+24. [Ingress で名前ベースに公開する](./24_ingress)
+25. [クラスターのメリットを体験する](./25_merit)

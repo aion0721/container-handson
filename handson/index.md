@@ -14,8 +14,9 @@
 4. コンテナのメリットを体験
 5. k3s を使った簡易デプロイ
 6. Manifest でのデプロイ
-7. Service と Ingress での公開
-8. クラスターのメリットを体験
+7. Service での公開
+8. Ingress での名前ベース公開
+9. クラスターのメリットを体験
 
 時間に余裕がある場合や、さらに進めたい場合は、発展編としてアプリのコンテナ化にも挑戦できます。
 
@@ -82,5 +83,5 @@ source <(kubectl completion bash)
 ## 章構成
 
 - [10. Podman 編（イメージ取得・コンテナ操作・ビルド・メリット体験）](./10_podman/)
-- [20. Kubernetes 編（k3s で簡易起動・Manifest デプロイ・Service / Ingress）](./20_kubernetes/)
+- [20. Kubernetes 編（k3s で簡易起動・Manifest デプロイ・Service / Ingress / クラスターのメリット体験）](./20_kubernetes/)
 - [30. 発展編（簡単なアプリ / Java アプリ / 開発環境活用）](./30_app/)

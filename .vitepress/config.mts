@@ -65,12 +65,16 @@ export default defineConfig({
               link: "/handson/20_kubernetes/22_manifest",
             },
             {
-              text: "23. Service と Ingress で公開",
-              link: "/handson/20_kubernetes/23_network",
+              text: "23. Service で公開",
+              link: "/handson/20_kubernetes/23_service",
             },
             {
-              text: "24. クラスターのメリットを体験",
-              link: "/handson/20_kubernetes/24_merit",
+              text: "24. Ingress で名前ベースに公開",
+              link: "/handson/20_kubernetes/24_ingress",
+            },
+            {
+              text: "25. クラスターのメリットを体験",
+              link: "/handson/20_kubernetes/25_merit",
             },
           ],
         },

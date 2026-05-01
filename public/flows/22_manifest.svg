@@ -1,13 +1,13 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 920 260" role="img" aria-labelledby="t d">
   <title id="t">Manifest デプロイの構成図</title>
-  <desc id="d">my-httpd.yaml を apply して Deployment と Service を作り、Pod を自動復旧させる構成</desc>
+  <desc id="d">my-httpd.yaml を apply して Deployment を作り、Pod を自動復旧させる構成</desc>
   <defs>
     <marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto-start-reverse">
       <path d="M0 0l10 5-10 5z" fill="#64748b"/>
     </marker>
   </defs>
   <rect width="920" height="260" rx="14" fill="#f8fafc"/>
-  <text x="40" y="42" font-size="22" font-family="Arial, sans-serif" font-weight="700" fill="#0f172a">Manifest に Deployment と Service を書き、apply する</text>
+  <text x="40" y="42" font-size="22" font-family="Arial, sans-serif" font-weight="700" fill="#0f172a">Manifest に Deployment を書き、apply する</text>
 
   <rect x="56" y="86" width="164" height="118" rx="12" fill="#ffffff" stroke="#2563eb" stroke-width="2"/>
   <text x="86" y="116" font-size="15" font-family="Arial, sans-serif" font-weight="700" fill="#1d4ed8">my-httpd.yaml</text>
@@ -17,15 +17,13 @@
   <text x="350" y="98" font-size="15" font-family="Arial, sans-serif" font-weight="700" fill="#1d4ed8">k3s cluster</text>
   <rect x="370" y="122" width="140" height="52" rx="10" fill="#eff6ff" stroke="#2563eb" stroke-width="2"/>
   <text x="394" y="154" font-size="14" font-family="Arial, sans-serif" font-weight="700" fill="#1d4ed8">Deployment</text>
-  <rect x="568" y="122" width="140" height="52" rx="10" fill="#f0fdf4" stroke="#16a34a" stroke-width="2"/>
-  <text x="608" y="154" font-size="14" font-family="Arial, sans-serif" font-weight="700" fill="#15803d">Service</text>
-  <circle cx="416" cy="202" r="15" fill="#dcfce7" stroke="#16a34a" stroke-width="2"/>
-  <circle cx="464" cy="202" r="15" fill="#dcfce7" stroke="#16a34a" stroke-width="2"/>
+  <circle cx="400" cy="202" r="15" fill="#dcfce7" stroke="#16a34a" stroke-width="2"/>
+  <circle cx="440" cy="202" r="15" fill="#dcfce7" stroke="#16a34a" stroke-width="2"/>
+  <circle cx="480" cy="202" r="15" fill="#dcfce7" stroke="#16a34a" stroke-width="2"/>
   <text x="800" y="150" font-size="13" font-family="Arial, sans-serif" fill="#64748b">Pod削除</text>
   <text x="800" y="170" font-size="13" font-family="Arial, sans-serif" fill="#64748b">→ 再作成</text>
 
   <path d="M224 146h90" stroke="#64748b" stroke-width="4" stroke-linecap="round" marker-end="url(#arrow)"/>
   <text x="244" y="132" font-size="13" font-family="Arial, sans-serif" fill="#475569">kubectl apply</text>
-  <path d="M512 148h44" stroke="#64748b" stroke-width="4" stroke-linecap="round" marker-end="url(#arrow)"/>
   <path d="M440 176v12" stroke="#64748b" stroke-width="4" stroke-linecap="round" marker-end="url(#arrow)"/>
 </svg>
