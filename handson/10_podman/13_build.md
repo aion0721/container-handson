@@ -20,6 +20,24 @@ cd podman-httpd-handson
 
 `index.html` を作成します。
 
+```bash
+cat <<'EOF' > index.html
+<!DOCTYPE html>
+<html lang="ja">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Podman Hands-on</title>
+  </head>
+  <body>
+    <h1>Hello Podman!</h1>
+    <p>このページは独自にビルドしたコンテナイメージで動いています。</p>
+  </body>
+</html>
+EOF
+```
+
+作成する内容は次の通りです。
+
 ```html
 <!DOCTYPE html>
 <html lang="ja">
@@ -37,6 +55,16 @@ cd podman-httpd-handson
 ## 13-3. Containerfile を作成する
 
 `Containerfile` を作成します。
+
+```bash
+cat <<'EOF' > Containerfile
+FROM docker.io/library/httpd:2.4
+
+COPY index.html /usr/local/apache2/htdocs/index.html
+EOF
+```
+
+作成する内容は次の通りです。
 
 ```dockerfile
 FROM docker.io/library/httpd:2.4
@@ -73,6 +101,25 @@ curl http://localhost:8080
 ## 13-6. ページを修正する
 
 `index.html` を編集してみます。
+
+```bash
+cat <<'EOF' > index.html
+<!DOCTYPE html>
+<html lang="ja">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Podman Hands-on</title>
+  </head>
+  <body>
+    <h1>Hello Podman v2!</h1>
+    <p>コンテナイメージを修正して再ビルドしました。</p>
+    <p>この変更は新しいイメージとして反映されます。</p>
+  </body>
+</html>
+EOF
+```
+
+修正後の内容は次の通りです。
 
 ```html
 <!DOCTYPE html>

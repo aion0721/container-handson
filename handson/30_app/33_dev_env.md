@@ -20,12 +20,29 @@
 ## 33-1. 開発用 Containerfile を作る
 
 ```dockerfile
-FROM eclipse-temurin:21-jdk
+FROM eclipse-temurin:21-jdk-jammy
 
 WORKDIR /workspace
-RUN microdnf install -y git && microdnf clean all
+RUN apt-get update \
+    && apt-get install -y --no-install-recommends git \
+    && rm -rf /var/lib/apt/lists/*
 
 CMD ["bash"]
+```
+
+作成する場合は、次のコマンドを使えます。
+
+```bash
+cat <<'EOF' > Containerfile
+FROM eclipse-temurin:21-jdk-jammy
+
+WORKDIR /workspace
+RUN apt-get update \
+    && apt-get install -y --no-install-recommends git \
+    && rm -rf /var/lib/apt/lists/*
+
+CMD ["bash"]
+EOF
 ```
 
 ::: tip

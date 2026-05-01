@@ -32,6 +32,63 @@ Pod
 
 `network.yaml` を作成します。
 
+```bash
+cat <<'EOF' > network.yaml
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: my-httpd
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: my-httpd
+  template:
+    metadata:
+      labels:
+        app: my-httpd
+    spec:
+      containers:
+        - name: httpd
+          image: docker.io/library/httpd:2.4
+          ports:
+            - containerPort: 80
+
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: my-httpd
+spec:
+  selector:
+    app: my-httpd
+  ports:
+    - port: 80
+      targetPort: 80
+  type: ClusterIP
+
+---
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: my-httpd
+spec:
+  rules:
+    - host: my-httpd.localhost
+      http:
+        paths:
+          - path: /
+            pathType: Prefix
+            backend:
+              service:
+                name: my-httpd
+                port:
+                  number: 80
+EOF
+```
+
+作成する内容は次の通りです。
+
 ```yaml
 apiVersion: apps/v1
 kind: Deployment
@@ -154,10 +211,16 @@ kubectl run curl --image=docker.io/curlimages/curl:8.7.1 --rm -it --restart=Neve
 ## 23-4. Ingress 経由でアクセスする
 
 次に、Ingress 経由でアクセスします。
-ローカルの k3s 環境で実行している場合は、次のコマンドで確認できます。
+まず k3s の Node の IP アドレスを確認します。
 
 ```bash
-curl http://my-httpd.localhost
+kubectl get nodes -o wide
+```
+
+表示された `INTERNAL-IP` を使って、`Host` ヘッダーを指定して確認します。
+
+```bash
+curl -H "Host: my-httpd.localhost" http://<Node の INTERNAL-IP>
 ```
 
 実行結果例:
@@ -166,22 +229,17 @@ curl http://my-httpd.localhost
 <html><body><h1>It works!</h1></body></html>
 ```
 
-ブラウザで次の URL を開いても確認できます。
-
-```text
-http://my-httpd.localhost
-```
-
-::: warning
-環境によっては `my-httpd.localhost` がうまく解決できない場合や、k3s が別のマシン上で動いている場合があります。
-その場合は、`Host` ヘッダーを指定して確認します。
+::: tip
+k3s を自分の PC 上で動かしている場合は、次のように `localhost` で確認できることもあります。
 :::
 
 ```bash
 curl -H "Host: my-httpd.localhost" http://localhost
 ```
 
-k3s が別のマシン上で動いている場合は、`localhost` の部分をそのマシンの IP アドレスに置き換えてください。
+::: tip
+ローカル環境で `my-httpd.localhost` が名前解決できる場合は、ブラウザで `http://my-httpd.localhost` を開いても確認できます。
+:::
 
 ## 23-5. ルーティングを確認する
 

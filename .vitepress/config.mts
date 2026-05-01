@@ -4,7 +4,7 @@ import { defineConfig } from "vitepress";
 export default defineConfig({
   title: "Container-Handson",
   description: "podman, kubernetes...",
-  base: "/container-handson",
+  base: "/container-handson/",
   head: [
     ["link", { rel: "icon", type: "image/svg+xml", href: "/favicon.svg" }],
   ],

@@ -28,6 +28,30 @@ cd simple-app
 
 `index.html`
 
+```bash
+cat <<'EOF' > index.html
+<!DOCTYPE html>
+<html lang="ja">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Simple App</title>
+  </head>
+  <body>
+    <h1>社内ハンズオン アプリ</h1>
+    <p>Podman でビルドし、k3s で起動しています。</p>
+    <ul>
+      <li>イメージ取得</li>
+      <li>コンテナ起動</li>
+      <li>イメージビルド</li>
+      <li>Kubernetes デプロイ</li>
+    </ul>
+  </body>
+</html>
+EOF
+```
+
+作成する内容は次の通りです。
+
 ```html
 <!DOCTYPE html>
 <html lang="ja">
@@ -49,6 +73,16 @@ cd simple-app
 ```
 
 `Containerfile`
+
+```bash
+cat <<'EOF' > Containerfile
+FROM docker.io/library/httpd:2.4
+
+COPY index.html /usr/local/apache2/htdocs/index.html
+EOF
+```
+
+作成する内容は次の通りです。
 
 ```dockerfile
 FROM docker.io/library/httpd:2.4
@@ -86,9 +120,54 @@ podman push registry.example.local/simple-app:v1
 この部分は自組織の環境に合わせて読み替えてください。
 :::
 
+::: tip
+研修で使うレジストリが決まっている場合は、`registry.example.local` を講師から案内された値に置き換えてください。
+k3s と Podman が同じマシン上にある場合でも、Kubernetes から参照できる場所にイメージを置く必要があります。
+:::
+
 ## 31-5. Kubernetes Manifest を作成する
 
 `simple-app.yaml`
+
+```bash
+cat <<'EOF' > simple-app.yaml
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: simple-app
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: simple-app
+  template:
+    metadata:
+      labels:
+        app: simple-app
+    spec:
+      containers:
+        - name: simple-app
+          image: registry.example.local/simple-app:v1
+          ports:
+            - containerPort: 80
+
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: simple-app
+spec:
+  selector:
+    app: simple-app
+  ports:
+    - port: 80
+      targetPort: 80
+      nodePort: 30081
+  type: NodePort
+EOF
+```
+
+作成する内容は次の通りです。
 
 ```yaml
 apiVersion: apps/v1
@@ -127,6 +206,11 @@ spec:
 ```
 
 ## 31-6. デプロイする
+
+::: warning
+この章では分かりやすさのために `nodePort: 30081` を固定しています。
+同じクラスターを複数人で共有する場合は、受講者ごとに Namespace や NodePort を分けてください。
+:::
 
 ```bash
 kubectl apply -f simple-app.yaml
