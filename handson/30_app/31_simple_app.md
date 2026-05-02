@@ -105,24 +105,17 @@ COMMIT simple-app:v1
 Successfully tagged localhost/simple-app:v1
 ```
 
-## 31-4. レジストリにプッシュする
+## 31-4. k3s にイメージを取り込む
 
-k3s から参照できるレジストリにプッシュしてください。
-ここでは例として `registry.example.local` を利用します。
+Podman でビルドしたイメージを、k3s が利用するコンテナランタイムに取り込みます。
 
 ```bash
-podman tag simple-app:v1 registry.example.local/simple-app:v1
-podman push registry.example.local/simple-app:v1
+podman save simple-app:v1 -o simple-app-v1.tar
+sudo k3s ctr images import simple-app-v1.tar
 ```
 
-::: warning
-環境によっては、ローカルレジストリや社内レジストリの事前準備が必要です。
-この部分は自組織の環境に合わせて読み替えてください。
-:::
-
 ::: tip
-研修で使うレジストリが決まっている場合は、`registry.example.local` を講師から案内された値に置き換えてください。
-k3s と Podman が同じマシン上にある場合でも、Kubernetes から参照できる場所にイメージを置く必要があります。
+k3s が複数ノードで動いている場合は、Pod が起動する可能性のある各ノードにイメージを取り込む必要があります。
 :::
 
 ## 31-5. Kubernetes Manifest を作成する
@@ -147,7 +140,8 @@ spec:
     spec:
       containers:
         - name: simple-app
-          image: registry.example.local/simple-app:v1
+          image: simple-app:v1
+          imagePullPolicy: Never
           ports:
             - containerPort: 80
 
@@ -186,7 +180,8 @@ spec:
     spec:
       containers:
         - name: simple-app
-          image: registry.example.local/simple-app:v1
+          image: simple-app:v1
+          imagePullPolicy: Never
           ports:
             - containerPort: 80
 

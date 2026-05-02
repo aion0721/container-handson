@@ -73,7 +73,7 @@ podman run --rm -it \
 
 1. コンテナ内でビルドして成果物を作る
 2. `podman build` で実行用イメージを作る
-3. レジストリへプッシュする
+3. `podman save` と `sudo k3s ctr images import` で k3s にイメージを取り込む
 4. `kubectl apply` で反映する
 
 この流れをチームで揃えると、環境差異による不具合を減らせます。

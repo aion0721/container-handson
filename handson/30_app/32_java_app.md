@@ -68,20 +68,18 @@ ENTRYPOINT ["java", "-jar", "/app/app.jar"]
 EOF
 ```
 
-## 32-4. イメージをビルドしてプッシュする
+## 32-4. イメージをビルドして k3s に取り込む
 
-k3s から参照できるレジストリにプッシュしてください。
-ここでは例として `registry.example.local` を利用します。
+Podman でビルドしたイメージを、k3s が利用するコンテナランタイムに取り込みます。
 
 ```bash
 podman build -t java-sample:v1 .
-podman tag java-sample:v1 registry.example.local/java-sample:v1
-podman push registry.example.local/java-sample:v1
+podman save java-sample:v1 -o java-sample-v1.tar
+sudo k3s ctr images import java-sample-v1.tar
 ```
 
-::: warning
-環境によっては、ローカルレジストリや社内レジストリの事前準備が必要です。
-`registry.example.local` は、講師から案内された値に置き換えてください。
+::: tip
+k3s が複数ノードで動いている場合は、Pod が起動する可能性のある各ノードにイメージを取り込む必要があります。
 :::
 
 ## 32-5. Kubernetes にデプロイする
@@ -106,7 +104,8 @@ spec:
     spec:
       containers:
         - name: java-sample
-          image: registry.example.local/java-sample:v1
+          image: java-sample:v1
+          imagePullPolicy: Never
           ports:
             - containerPort: 8080
 ---
@@ -144,7 +143,8 @@ spec:
     spec:
       containers:
         - name: java-sample
-          image: registry.example.local/java-sample:v1
+          image: java-sample:v1
+          imagePullPolicy: Never
           ports:
             - containerPort: 8080
 ---
